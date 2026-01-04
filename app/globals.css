@@ -1,14 +1,21 @@
 @import "tailwindcss";
 
+@theme {
+  --color-background: #080517;
+  --color-foreground: #ffffff;
+  --color-muted: #1e293b;
+  --color-muted-foreground: #94a3b8;
+  --color-border: #1e293b;
+  --color-primary: #a855f7;
+}
+
 :root {
   --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
+  --background-start-rgb: 8, 5, 23;
+  --background-end-rgb: 8, 5, 23;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  color: var(--color-foreground);
+  background: var(--color-background);
 }
