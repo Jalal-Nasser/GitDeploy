@@ -513,9 +513,25 @@ function Footer() {
         <footer className="border-t border-border bg-background">
             <div className="container mx-auto px-4 py-12 lg:px-8">
                 <div className="grid gap-8 md:grid-cols-4">
-                    <div>
-                        <h3 className="mb-2 text-xl font-bold tracking-tight">mDeploy</h3>
-                        <p className="text-sm text-muted-foreground">Professional deployment services for websites, web apps, mobile apps, and desktop applications.</p>
+                    <div className="md:col-span-2">
+                        <Link href="/" className="flex items-center gap-3 mb-6">
+                            <div className="relative w-12 h-12">
+                                <Image
+                                    src="/logo.png"
+                                    alt="mDeploy Logo"
+                                    fill
+                                    className="object-contain"
+                                    priority
+                                />
+                            </div>
+                            <div className="leading-tight text-start">
+                                <span className="text-xl font-bold tracking-tight text-[#f959ca] drop-shadow-[0_2px_10px_rgba(249,89,202,0.6)]">mDeploy</span>
+                                <span className="block text-xs font-medium text-white drop-shadow-[0_1px_5px_rgba(255,255,255,0.5)] opacity-90">Professional Deployment Services</span>
+                            </div>
+                        </Link>
+                        <p className="mb-4 max-w-sm text-sm text-muted-foreground">
+                            Expert deployment services for your web and mobile applications. We handle the infrastructure so you can focus on the code.
+                        </p>
                         <div className="mt-5">
                             <p className="text-sm font-semibold text-foreground">Connect</p>
                             <div className="mt-3 flex flex-wrap gap-2">
