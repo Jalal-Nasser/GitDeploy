@@ -18,7 +18,8 @@ import {
     Zap,
     Menu,
     X,
-    GitBranch
+    GitBranch,
+    ArrowUp
 } from "lucide-react";
 
 // --- Configuration & Data ---
@@ -154,7 +155,7 @@ function Navbar() {
     ];
 
     return (
-        <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-gradient-to-r from-slate-950 via-purple-950 to-slate-950 backdrop-blur-md border-b border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.1)]" : "bg-transparent"}`}>
+        <header className="fixed top-0 w-full z-50 transition-all duration-300 bg-gradient-to-r from-slate-950 via-purple-950 to-slate-950 backdrop-blur-md border-b border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.1)]">
             <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-3">
                     <div className="relative w-12 h-12">
@@ -575,6 +576,47 @@ function Footer() {
     );
 }
 
+function ScrollToTop() {
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const toggleVisibility = () => {
+            if (window.scrollY > 300) {
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
+            }
+        };
+
+        window.addEventListener("scroll", toggleVisibility);
+        return () => window.removeEventListener("scroll", toggleVisibility);
+    }, []);
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    };
+
+    return (
+        <AnimatePresence>
+            {isVisible && (
+                <motion.button
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.5 }}
+                    onClick={scrollToTop}
+                    className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-purple-600 text-white shadow-[0_0_20px_rgba(168,85,247,0.5)] hover:bg-purple-500 transition-colors focus:outline-none"
+                    aria-label="Scroll to top"
+                >
+                    <ArrowUp className="w-6 h-6" />
+                </motion.button>
+            )}
+        </AnimatePresence>
+    );
+}
+
 // --- Main Page Component ---
 
 export default function Home() {
@@ -587,6 +629,7 @@ export default function Home() {
             <Process />
             <Contact />
             <Footer />
+            <ScrollToTop />
         </main>
     );
 }
