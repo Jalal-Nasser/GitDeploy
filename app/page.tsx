@@ -108,7 +108,7 @@ const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HT
     ({ className = "", variant = "primary", size = "md", ...props }, ref) => {
         const baseStyles = "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50";
         const variants = {
-            primary: "bg-white text-black hover:bg-slate-200 shadow-sm",
+            primary: "bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white shadow-[0_0_20px_rgba(168,85,247,0.4)] border border-white/10",
             secondary: "bg-slate-800 text-slate-50 hover:bg-slate-800/80",
             outline: "border border-slate-700 bg-transparent hover:bg-slate-800 text-slate-100",
             ghost: "hover:bg-slate-800 text-slate-100 hover:text-slate-50",
@@ -126,13 +126,13 @@ const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HT
 Button.displayName = "Button";
 
 const Badge = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-    <span className={`inline-flex items-center rounded-full border border-slate-700 bg-slate-900/50 px-2.5 py-0.5 text-xs font-semibold text-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ${className}`}>
+    <span className={`inline-flex items-center rounded-full border border-purple-500/30 bg-purple-500/10 px-2.5 py-1 text-xs font-medium text-purple-200 shadow-[0_0_10px_rgba(168,85,247,0.2)] ${className}`}>
         {children}
     </span>
 );
 
 const Card = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-    <div className={`rounded-xl border border-slate-800 bg-slate-950/50 text-slate-50 shadow-sm ${className}`}>
+    <div className={`rounded-xl border border-purple-500/20 bg-[#0d0b21] hover:bg-[#13112b] text-slate-50 shadow-sm transition-all duration-300 ${className}`}>
         {children}
     </div>
 );
@@ -156,7 +156,7 @@ function Navbar() {
     ];
 
     return (
-        <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-slate-950/70 backdrop-blur-md border-b border-white/5" : "bg-transparent"}`}>
+        <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-[#080517]/80 backdrop-blur-md border-b border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.1)]" : "bg-transparent"}`}>
             <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-2 text-xl font-bold tracking-tighter text-white">
                     <div className="relative w-8 h-8">
@@ -242,12 +242,13 @@ function Hero() {
             <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-blue-900/10 blur-[100px] -z-10 rounded-full pointer-events-none" />
 
             {/* Background Gradients (Updated) */}
-            <div className="absolute inset-0 -z-10 opacity-30 mix-blend-soft-light pointer-events-none
-        bg-[radial-gradient(circle_at_20%_20%,rgba(168,85,247,0.18),transparent_35%),
-            radial-gradient(circle_at_80%_30%,rgba(59,130,246,0.16),transparent_40%),
-            radial-gradient(circle_at_50%_80%,rgba(236,72,153,0.10),transparent_45%)]"
+            <div className="absolute inset-0 -z-10 opacity-60 mix-blend-screen pointer-events-none
+                bg-[radial-gradient(circle_at_20%_20%,rgba(168,85,247,0.25),transparent_40%),
+                    radial-gradient(circle_at_80%_30%,rgba(139,92,246,0.25),transparent_40%),
+                    radial-gradient(circle_at_50%_80%,rgba(192,38,211,0.15),transparent_45%)]"
             />
-            <div className="absolute inset-0 -z-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+            {/* Grid Overlay is now global, adding a specific spotlight effect for hero */}
+            <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(126,34,206,0.15),transparent_70%)]"></div>
 
             <div className="container mx-auto px-4 md:px-6 flex flex-col items-center text-center">
                 <motion.div
@@ -321,7 +322,7 @@ function Hero() {
 
 function Stats() {
     return (
-        <section className="py-10 border-y border-white/5 bg-slate-950/30">
+        <section className="py-10 border-y border-purple-500/10 bg-purple-950/10 backdrop-blur-sm">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                     {metrics.map((stat, idx) => (
