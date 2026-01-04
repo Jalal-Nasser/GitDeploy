@@ -156,7 +156,7 @@ function Navbar() {
     return (
         <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-[#080517]/80 backdrop-blur-md border-b border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.1)]" : "bg-transparent"}`}>
             <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-                <Link href="/" className="flex items-center gap-2 text-xl font-bold tracking-tighter text-white">
+                <Link href="/" className="flex items-center gap-2">
                     <div className="relative w-8 h-8">
                         <Image
                             src="/logo.png"
@@ -166,7 +166,10 @@ function Navbar() {
                             priority
                         />
                     </div>
-                    {BRAND_NAME}
+                    <div className="hidden leading-tight text-start md:block">
+                        <span className="text-lg font-bold tracking-tight text-[#f959ca] drop-shadow-[0_2px_10px_rgba(249,89,202,0.6)]">mDeploy</span>
+                        <span className="block text-xs text-slate-500 dark:text-slate-300">Professional Deployment Services</span>
+                    </div>
                 </Link>
 
                 {/* Desktop Nav */}
