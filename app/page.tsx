@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     Github,
@@ -158,7 +159,15 @@ function Navbar() {
         <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-slate-950/70 backdrop-blur-md border-b border-white/5" : "bg-transparent"}`}>
             <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-2 text-xl font-bold tracking-tighter text-white">
-                    <Terminal className="w-6 h-6 text-purple-500" />
+                    <div className="relative w-8 h-8">
+                        <Image
+                            src="/logo.png"
+                            alt="mDeploy Logo"
+                            fill
+                            className="object-contain"
+                            priority
+                        />
+                    </div>
                     {BRAND_NAME}
                 </Link>
 
