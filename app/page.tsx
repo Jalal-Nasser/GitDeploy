@@ -577,6 +577,11 @@ function Footer() {
                     </div>
                 </div>
             </div>
+            <div className="mt-10 w-full border-t border-slate-800 bg-gradient-to-r from-slate-950 via-purple-950 to-slate-950 py-5 text-center text-sm text-slate-100 shadow-[0_-10px_35px_-25px_rgba(15,23,42,0.8)]">
+                <div className="container mx-auto px-4 lg:px-8">
+                    <p>© {new Date().getFullYear()} mDeploy. All rights reserved. · Developed by <a href="https://github.com/Jalal-Nasser" target="_blank" rel="noopener noreferrer" className="font-semibold text-purple-300 hover:text-purple-200">Jalal Nasser</a></p>
+                </div>
+            </div>
         </footer>
     );
 }
