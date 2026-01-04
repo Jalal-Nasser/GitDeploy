@@ -368,7 +368,7 @@ function Projects() {
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
                         >
-                            <Card className="h-full flex flex-col p-6 hover:border-purple-500/50 hover:bg-slate-900/80 transition-all duration-300 group">
+                            <Card className="h-full flex flex-col p-6 bg-gradient-to-r from-slate-950 via-purple-950 to-slate-950 border-purple-500/20 hover:border-purple-500/50 transition-all duration-300 group">
                                 <div className="flex items-start justify-between mb-4">
                                     <div className="p-2 bg-slate-800 rounded-lg text-white group-hover:bg-purple-500/20 group-hover:text-purple-300 transition-colors">
                                         <Code className="w-6 h-6" />
@@ -464,9 +464,7 @@ function Process() {
                                 transition={{ delay: idx * 0.15 }}
                             >
                                 <div className="z-10 flex items-center justify-center w-24 h-24 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl mb-6 group hover:border-purple-500/50 hover:shadow-purple-500/20 transition-all duration-300">
-                                    <div className="text-slate-400 group-hover:text-purple-400 transition-colors transform group-hover:scale-110 duration-300">
-                                        {React.cloneElement(step.icon as React.ReactElement, { className: "w-8 h-8" })}
-                                    </div>
+                                    {React.cloneElement(step.icon as any, { className: "w-8 h-8" })}
                                 </div>
                                 <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
                                 <p className="text-sm text-slate-400 px-2">{step.description}</p>
@@ -486,7 +484,7 @@ function Contact() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-purple-900/10 blur-[130px] -z-10 rounded-full pointer-events-none" />
 
             <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-                <Card className="p-8 md:p-12 bg-gradient-to-b from-slate-900 to-slate-950 border-slate-800 text-center relative overflow-hidden">
+                <Card className="p-8 md:p-12 bg-gradient-to-r from-slate-950 via-purple-950 to-slate-950 border-purple-500/20 text-center relative overflow-hidden shadow-[0_0_40px_-10px_rgba(168,85,247,0.3)]">
                     <div className="relative z-10">
                         <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Ready to collaborate?</h2>
                         <p className="text-lg text-slate-400 mb-8 max-w-2xl mx-auto">
