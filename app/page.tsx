@@ -513,7 +513,7 @@ function Footer() {
         <footer className="border-t border-border bg-background">
             <div className="container mx-auto px-4 py-12 lg:px-8">
                 <div className="grid gap-8 md:grid-cols-4">
-                    <div className="md:col-span-2">
+                    <div>
                         <Link href="/" className="flex items-center gap-3 mb-6">
                             <div className="relative w-12 h-12">
                                 <Image
