@@ -324,7 +324,7 @@ function Hero() {
 
 function Stats() {
     return (
-        <section className="py-10 border-y border-purple-500/10 bg-purple-950/10 backdrop-blur-sm">
+        <section className="py-20 border-y border-white/5 bg-transparent backdrop-blur-sm relative z-20">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                     {metrics.map((stat, idx) => (
@@ -334,13 +334,13 @@ function Stats() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            className="flex flex-col items-center justify-center text-center p-4"
+                            className="flex flex-col items-center justify-center text-center p-4 group"
                         >
-                            <div className="bg-slate-900/50 p-3 rounded-full mb-3 border border-slate-800">
+                            <div className="bg-slate-900/50 p-4 rounded-full mb-4 border border-slate-800/50 shadow-lg group-hover:border-purple-500/50 group-hover:shadow-purple-500/20 transition-all duration-300">
                                 {stat.icon}
                             </div>
-                            <h3 className="text-3xl font-bold text-white mb-1">{stat.value}</h3>
-                            <p className="text-sm text-slate-400 font-medium uppercase tracking-wider">{stat.label}</p>
+                            <div className="text-3xl font-bold text-white mb-1 tracking-tight">{stat.value}</div>
+                            <div className="text-xs uppercase tracking-widest text-slate-400 group-hover:text-purple-400 transition-colors">{stat.label}</div>
                         </motion.div>
                     ))}
                 </div>
