@@ -156,8 +156,8 @@ function Navbar() {
     return (
         <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-[#080517]/80 backdrop-blur-md border-b border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.1)]" : "bg-transparent"}`}>
             <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-                <Link href="/" className="flex items-center gap-2">
-                    <div className="relative w-8 h-8">
+                <Link href="/" className="flex items-center gap-3">
+                    <div className="relative w-12 h-12">
                         <Image
                             src="/logo.png"
                             alt="mDeploy Logo"
@@ -167,8 +167,8 @@ function Navbar() {
                         />
                     </div>
                     <div className="hidden leading-tight text-start md:block">
-                        <span className="text-lg font-bold tracking-tight text-[#f959ca] drop-shadow-[0_2px_10px_rgba(249,89,202,0.6)]">mDeploy</span>
-                        <span className="block text-xs text-slate-500 dark:text-slate-300">Professional Deployment Services</span>
+                        <span className="text-xl font-bold tracking-tight text-[#f959ca] drop-shadow-[0_2px_10px_rgba(249,89,202,0.6)]">mDeploy</span>
+                        <span className="block text-xs font-medium text-white drop-shadow-[0_1px_5px_rgba(255,255,255,0.5)] opacity-90">Professional Deployment Services</span>
                     </div>
                 </Link>
 
