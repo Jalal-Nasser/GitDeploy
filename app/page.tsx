@@ -29,42 +29,40 @@ const CURRENT_YEAR = new Date().getFullYear();
 
 const projects = [
     {
-        name: "nexus-dashboard",
-        description: "High-performance analytics dashboard with real-time data visualization and customizable widgets.",
-        repoUrl: `${GITHUB_PROFILE_URL}/nexus-dashboard`,
-        demoUrl: "https://demo.example.com",
-        tags: ["Next.js", "TypeScript", "D3.js"],
+        name: "PassGen",
+        description: "Secure Password Generator & Vault Desktop App featuring advanced encryption and activation dashboard.",
+        repoUrl: "https://github.com/Jalal-Nasser/PassGen",
+        tags: ["Desktop App", "Security", "Electron"],
     },
     {
-        name: "cloud-deploy-cli",
-        description: "A zero-config CLI tool for deploying full-stack applications to AWS/GCP in seconds.",
-        repoUrl: `${GITHUB_PROFILE_URL}/cloud-deploy-cli`,
-        tags: ["Rust", "CLI", "DevOps"],
+        name: "FinAi",
+        description: "AI-driven financial automation platform supporting multi-country tax compliance, ZATCA e-invoicing, and IFRS standards.",
+        repoUrl: "https://github.com/mDeploys/FinAi",
+        tags: ["AI", "FinTech", "ZATCA", "Automation"],
     },
     {
-        name: "hyper-auth",
-        description: "Secure, passwordless authentication library for modern web apps. JWT & WebAuthn support.",
-        repoUrl: `${GITHUB_PROFILE_URL}/hyper-auth`,
-        tags: ["Node.js", "Security", "OAuth"],
+        name: "Dropskey",
+        description: "Modern eCommerce store solution integrated with Cloudflare Turnstile for robust bot protection and secure transactions.",
+        repoUrl: "https://github.com/mDeploys/Dropskey",
+        tags: ["eCommerce", "Security", "Next.js"],
     },
     {
-        name: "pixel-editor-pro",
-        description: "Browser-based image manipulation suite with WebGL acceleration and AI filters.",
-        repoUrl: `${GITHUB_PROFILE_URL}/pixel-editor-pro`,
-        demoUrl: "https://editor.example.com",
-        tags: ["React", "WebGL", "WASM"],
+        name: "GetSolution",
+        description: "Professional IT Services website showcasing digital transformation solutions and business consulting services.",
+        repoUrl: "https://github.com/Jalal-Nasser/GetSolution",
+        tags: ["Web Dev", "IT Services", "React"],
     },
     {
-        name: "async-queue-worker",
-        description: "Robust distributed background job processing system backed by Redis strings and streams.",
-        repoUrl: `${GITHUB_PROFILE_URL}/async-queue-worker`,
-        tags: ["Go", "Redis", "Distributed Systems"],
+        name: "Logistic",
+        description: "Comprehensive logistics management application for tracking supply chains and delivery operations.",
+        repoUrl: "https://github.com/mDeploys/Logistic",
+        tags: ["Logistics", "App", "Management"],
     },
     {
-        name: "finance-tracker-api",
-        description: "Double-entry accounting ledger API with multi-currency support and audit trails.",
-        repoUrl: `${GITHUB_PROFILE_URL}/finance-tracker-api`,
-        tags: ["Python", "FastAPI", "PostgreSQL"],
+        name: "royalarch",
+        description: "Architectural design and project management system for premium construction projects.",
+        repoUrl: "https://github.com/Jalal-Nasser/royalarch",
+        tags: ["Architecture", "Design", "System"],
     },
 ];
 
@@ -374,18 +372,8 @@ function Projects() {
                                         <Code className="w-6 h-6" />
                                     </div>
                                     <div className="flex gap-2">
-                                        {project.demoUrl && (
-                                            <button
-                                                onClick={() => {
-                                                    trackEvent("Demo Click", { repo: project.name });
-                                                    window.open(project.demoUrl, "_blank");
-                                                }}
-                                                className="p-2 hover:bg-slate-800 rounded-full text-slate-400 hover:text-white transition-colors"
-                                                title="Live Demo"
-                                            >
-                                                <ExternalLink className="w-5 h-5" />
-                                            </button>
-                                        )}
+                                        <div className="flex gap-2">
+                                        </div>
                                     </div>
                                 </div>
 
