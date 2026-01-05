@@ -433,36 +433,93 @@ function Projects() {
 }
 
 function Process() {
+    const [activeStep, setActiveStep] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveStep((prev) => (prev + 1) % timelineSteps.length);
+        }, 2000);
+        return () => clearInterval(interval);
+    }, []);
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                type: "spring" as const,
+                stiffness: 50,
+                damping: 10
+            }
+        }
+    };
+
     return (
-        <section id="process" className="py-24 bg-slate-950/50 border-y border-white/5">
+        <section id="process" className="py-24 bg-slate-950/50 border-y border-white/5 overflow-hidden">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="mb-16 md:text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">How I Build</h2>
-                    <p className="text-slate-400">From concept to deployment, my workflow focuses on quality and speed.</p>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">How I Build</h2>
+                        <p className="text-slate-400">From concept to deployment, my workflow focuses on quality and speed.</p>
+                    </motion.div>
                 </div>
 
                 <div className="relative">
                     {/* Connecting Line (Desktop) */}
-                    <div className="hidden md:block absolute top-12 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
+                    <motion.div
+                        className="hidden md:block absolute top-12 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500/0 via-purple-500/50 to-purple-500/0"
+                        initial={{ scaleX: 0, opacity: 0 }}
+                        whileInView={{ scaleX: 1, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.5, ease: "easeInOut" }}
+                    />
 
-                    <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-                        {timelineSteps.map((step, idx) => (
-                            <motion.div
-                                key={step.title}
-                                className="relative flex flex-col items-center md:text-center"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: idx * 0.15 }}
-                            >
-                                <div className="z-10 flex items-center justify-center w-24 h-24 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl mb-6 group hover:border-purple-500/50 hover:shadow-purple-500/20 transition-all duration-300">
-                                    {React.cloneElement(step.icon as any, { className: "w-8 h-8" })}
-                                </div>
-                                <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
-                                <p className="text-sm text-slate-400 px-2">{step.description}</p>
-                            </motion.div>
-                        ))}
-                    </div>
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-5 gap-8"
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                    >
+                        {timelineSteps.map((step, idx) => {
+                            const isActive = idx === activeStep;
+                            return (
+                                <motion.div
+                                    key={step.title}
+                                    className="relative flex flex-col items-center md:text-center z-10"
+                                    variants={itemVariants}
+                                >
+                                    <div
+                                        className="group relative cursor-pointer"
+                                        onMouseEnter={() => setActiveStep(idx)}
+                                    >
+                                        <div className={`absolute inset-0 bg-purple-500/20 blur-xl rounded-full transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
+                                        <div className={`relative z-10 flex items-center justify-center w-24 h-24 rounded-2xl bg-slate-900 border shadow-xl mb-6 transition-all duration-500 ${isActive ? "border-purple-500/50 scale-110 shadow-purple-500/20" : "border-slate-800 group-hover:border-purple-500/50 group-hover:scale-110"}`}>
+                                            {React.cloneElement(step.icon as any, { className: `w-8 h-8 transition-colors duration-300 ${isActive ? "text-purple-400" : "text-slate-300 group-hover:text-purple-400"}` })}
+                                        </div>
+                                    </div>
+                                    <h3 className={`text-lg font-bold transition-colors duration-300 mb-2 ${isActive ? "text-white" : "text-white/70"}`}>{step.title}</h3>
+                                    <p className="text-sm text-slate-400 px-2 leading-relaxed">{step.description}</p>
+                                </motion.div>
+                            );
+                        })}
+                    </motion.div>
                 </div>
             </div>
         </section>
