@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
@@ -26,18 +26,34 @@ import { Card } from "../../components/ui/Card";
 
 
 export default function PassGenPage() {
+    const [downloadCount, setDownloadCount] = useState<number | null>(null);
+
+    useEffect(() => {
+        fetch("https://api.github.com/repos/Jalal-Nasser/PassGen/releases")
+            .then((res) => res.json())
+            .then((data) => {
+                if (Array.isArray(data)) {
+                    const total = data.reduce((acc, release) => {
+                        return acc + release.assets.reduce((sum: number, asset: any) => sum + asset.download_count, 0);
+                    }, 0);
+                    setDownloadCount(total);
+                }
+            })
+            .catch((err) => console.error("Failed to fetch download count", err));
+    }, []);
+
     return (
         <main className="min-h-screen bg-background text-foreground pt-16">
-            <Hero />
+            <Hero downloadCount={downloadCount} />
             <Features />
             <Interface />
             <Pricing />
-            <DownloadSection />
+            <DownloadSection downloadCount={downloadCount} />
         </main>
     );
 }
 
-function Hero() {
+function Hero({ downloadCount }: { downloadCount: number | null }) {
     return (
         <section className="relative pt-20 pb-32 overflow-hidden">
             {/* Background Effects */}
@@ -93,7 +109,12 @@ function Hero() {
                         <Download className="w-6 h-6 mr-3" />
                         Download for Windows
                     </Button>
-                    <p className="mt-4 text-sm text-slate-500">Version 1.0.6 • Windows 10/11</p>
+                    <p className="mt-4 text-sm text-slate-500">
+                        Version 1.0.6 • Windows 10/11
+                        {downloadCount !== null && (
+                            <span className="text-slate-400"> • {downloadCount.toLocaleString()} Downloads</span>
+                        )}
+                    </p>
                 </motion.div>
             </div>
         </section>
@@ -424,7 +445,7 @@ function Pricing() {
 }
 
 
-function DownloadSection() {
+function DownloadSection({ downloadCount }: { downloadCount: number | null }) {
     return (
         <section className="py-20 text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-purple-600/10 blur-3xl -z-10" />
@@ -438,6 +459,11 @@ function DownloadSection() {
                     <Download className="w-6 h-6 mr-3" />
                     Download PassGen v1.0.6
                 </Button>
+                {downloadCount !== null && (
+                    <p className="mt-4 text-sm text-slate-400">
+                        Join {downloadCount.toLocaleString()} users securing their data
+                    </p>
+                )}
             </div>
         </section>
     );
