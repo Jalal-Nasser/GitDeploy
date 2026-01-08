@@ -5,6 +5,7 @@ import "./globals.css";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -49,7 +50,9 @@ export default function RootLayout({
         ) : null}
 
         <Navbar />
-        {children}
+        <Providers>
+          {children}
+        </Providers>
         <Footer />
         <ScrollToTop />
       </body>
