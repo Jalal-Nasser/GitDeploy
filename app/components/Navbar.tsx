@@ -36,6 +36,8 @@ export function Navbar() {
     }, []);
 
     const navLinks = [
+        { name: "PassGen", href: "/apps-gallery/passgen" },
+        { name: "Pricing", href: "/apps-gallery/passgen#pricing" },
         { name: "Projects", href: "/#projects" },
         { name: "How I Build", href: "/#process" },
         { name: "Contact", href: "/#contact" },
@@ -62,39 +64,6 @@ export function Navbar() {
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center gap-8">
-                    {/* Apps Gallery Dropdown */}
-                    <div
-                        className="relative group"
-                        onMouseEnter={() => setAppsDropdownOpen(true)}
-                        onMouseLeave={() => setAppsDropdownOpen(false)}
-                    >
-                        <button className="flex items-center text-sm font-medium text-slate-300 hover:text-white transition-colors focus:outline-none">
-                            Apps Gallery
-                            <ChevronDown className="w-4 h-4 ml-1 opacity-70 group-hover:opacity-100 transition-opacity" />
-                        </button>
-
-                        <AnimatePresence>
-                            {appsDropdownOpen && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: 10 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="absolute left-0 mt-2 w-48 rounded-xl bg-slate-900 border border-purple-500/20 shadow-xl overflow-hidden"
-                                >
-                                    <div className="py-1">
-                                        <Link
-                                            href="/apps-gallery/passgen"
-                                            className="block px-4 py-2 text-sm text-slate-300 hover:bg-purple-900/30 hover:text-white transition-colors"
-                                        >
-                                            PassGen
-                                        </Link>
-                                    </div>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </div>
-
                     {navLinks.map((link) => (
                         <Link key={link.name} href={link.href} className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
                             {link.name}
@@ -128,17 +97,6 @@ export function Navbar() {
                         className="md:hidden border-b border-slate-800 bg-slate-950 overflow-hidden"
                     >
                         <div className="p-4 flex flex-col gap-4">
-                            <div className="text-base font-medium text-slate-300 border-b border-slate-800 pb-2 mb-2">
-                                Apps Gallery
-                                <Link
-                                    href="/apps-gallery/passgen"
-                                    className="block mt-2 pl-4 text-sm text-purple-300 hover:text-white"
-                                    onClick={() => setIsOpen(false)}
-                                >
-                                    PassGen
-                                </Link>
-                            </div>
-
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.name}

@@ -373,21 +373,21 @@ function Interface() {
 
 function Pricing() {
     return (
-        <section className="py-24 relative">
+        <section id="pricing" className="py-24 relative">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Simple Pricing</h2>
                     <p className="text-slate-400">Choose the plan that fits your security needs.</p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {/* Free Plan */}
-                    <Card className="p-8 border-slate-800 bg-transparent hover:border-slate-700">
+                    <Card className="p-8 border-slate-800 bg-transparent hover:border-slate-700 flex flex-col">
                         <h3 className="text-2xl font-bold text-white mb-2">Free</h3>
                         <div className="text-4xl font-bold text-white mb-6">$0</div>
                         <p className="text-slate-400 mb-8">Essential password generation for local use.</p>
 
-                        <ul className="space-y-4 mb-8">
+                        <ul className="space-y-4 mb-8 flex-1">
                             <li className="flex items-center gap-3 text-slate-300">
                                 <Check className="w-5 h-5 text-green-500" />
                                 Store up to 4 passwords locally
@@ -407,7 +407,7 @@ function Pricing() {
                     </Card>
 
                     {/* Premium Plan */}
-                    <Card className="p-8 border-purple-500/50 bg-purple-900/10 hover:border-purple-500 relative overflow-hidden">
+                    <Card className="p-8 border-purple-500/50 bg-purple-900/10 hover:border-purple-500 relative overflow-hidden flex flex-col">
                         <div className="absolute top-0 right-0 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
                             POPULAR
                         </div>
@@ -415,7 +415,7 @@ function Pricing() {
                         <div className="text-4xl font-bold text-white mb-6">$15<span className="text-lg text-slate-400 font-normal">/year</span></div>
                         <p className="text-slate-400 mb-8">Complete cloud sync and unlimited storage.</p>
 
-                        <ul className="space-y-4 mb-8">
+                        <ul className="space-y-4 mb-8 flex-1">
                             <li className="flex items-center gap-3 text-slate-300">
                                 <Check className="w-5 h-5 text-purple-400" />
                                 Unlimited password storage
@@ -436,6 +436,35 @@ function Pricing() {
 
                         <Button className="w-full" onClick={() => window.location.href = "/apps-gallery/passgen/payment"}>
                             Get Premium
+                        </Button>
+                    </Card>
+
+                    {/* Enterprise Plan */}
+                    <Card className="p-8 border-slate-800 bg-transparent hover:border-blue-500/50 flex flex-col">
+                        <h3 className="text-2xl font-bold text-white mb-2">Enterprise</h3>
+                        <div className="text-4xl font-bold text-white mb-6">Custom</div>
+                        <p className="text-slate-400 mb-8">Advanced security for large organizations.</p>
+
+                        <ul className="space-y-4 mb-8 flex-1">
+                            <li className="flex items-center gap-3 text-slate-300">
+                                <Check className="w-5 h-5 text-blue-500" />
+                                Single Sign-On (SSO)
+                            </li>
+                            <li className="flex items-center gap-3 text-slate-300">
+                                <Check className="w-5 h-5 text-blue-500" />
+                                Advanced Audit Logs
+                            </li>
+                            <li className="flex items-center gap-3 text-slate-300">
+                                <Check className="w-5 h-5 text-blue-500" />
+                                Dedicated Success Manager
+                            </li>
+                            <li className="flex items-center gap-3 text-slate-300">
+                                <Check className="w-5 h-5 text-blue-500" />
+                                Custom Contract & SLA
+                            </li>
+                        </ul>
+                        <Button variant="outline" className="w-full" onClick={() => window.location.href = "/#contact"}>
+                            Contact Sales
                         </Button>
                     </Card>
                 </div>
