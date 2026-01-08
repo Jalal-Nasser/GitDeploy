@@ -434,7 +434,7 @@ function Pricing() {
                             </li>
                         </ul>
 
-                        <Button className="w-full" onClick={() => window.location.href = "/apps-gallery/passgen/payment"}>
+                        <Button className="w-full" onClick={() => window.location.href = "/apps-gallery/passgen/pricing"}>
                             Get Premium
                         </Button>
                     </Card>
