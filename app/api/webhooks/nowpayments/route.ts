@@ -62,7 +62,7 @@ export async function POST(req: Request) {
             // Calculate Access Expiry
             const now = new Date();
             let expiresAt = new Date(now);
-            if (paymentRecord.interval === "YEAR") {
+            if (paymentRecord.billingInterval === "YEAR") {
                 expiresAt.setFullYear(expiresAt.getFullYear() + 1);
             } else {
                 expiresAt.setMonth(expiresAt.getMonth() + 1);
