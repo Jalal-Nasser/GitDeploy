@@ -1,7 +1,7 @@
 
 import { auth } from "@/auth";
 import { db } from "@/db";
-import { payments, planEnum, billingPeriodEnum } from "@/db/schema";
+import { payments, planEnum, subscriptionPeriodEnum } from "@/db/schema";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -74,7 +74,7 @@ export async function POST(req: Request) {
             id: orderId,
             userId: session.user.id,
             plan: plan,
-            billingPeriod: interval,
+            subscriptionPeriod: interval,
             amountUsd: amount.toString(),
             nowpaymentsInvoiceId: invoiceData.id,
             status: "PENDING",
