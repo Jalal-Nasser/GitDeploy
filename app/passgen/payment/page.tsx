@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import Script from "next/script";
-import { Card } from "../../../components/ui/Card";
-import { Badge } from "../../../components/ui/Badge";
+import { Card } from "../../components/ui/Card";
+import { Badge } from "../../components/ui/Badge";
 import { Check, Shield, ArrowLeft, Lock } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -36,7 +36,7 @@ export default function PaymentPage() {
             />
 
             <div className="container mx-auto px-4 relative z-10">
-                <Link href="/apps-gallery/passgen" className="absolute top-0 left-4 md:left-8 inline-flex items-center text-slate-400 hover:text-white transition-colors mb-8">
+                <Link href="/passgen" className="absolute top-0 left-4 md:left-8 inline-flex items-center text-slate-400 hover:text-white transition-colors mb-8">
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Back
                 </Link>

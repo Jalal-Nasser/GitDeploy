@@ -56,8 +56,8 @@ export async function POST(req: Request) {
                 order_id: orderId,
                 order_description: `PassGen ${plan} Plan (${interval})`,
                 ipn_callback_url: `${process.env.NEXTAUTH_URL}/api/webhooks/nowpayments`,
-                success_url: `${process.env.NEXTAUTH_URL}/apps-gallery/passgen/pricing?success=true`,
-                cancel_url: `${process.env.NEXTAUTH_URL}/apps-gallery/passgen/pricing?canceled=true`,
+                success_url: `${process.env.NEXTAUTH_URL}/passgen/pricing?success=true`,
+                cancel_url: `${process.env.NEXTAUTH_URL}/passgen/pricing?canceled=true`,
             }),
         });
 

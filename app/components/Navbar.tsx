@@ -36,8 +36,9 @@ export function Navbar() {
     }, []);
 
     const navLinks = [
-        { name: "PassGen", href: "/apps-gallery/passgen" },
-        { name: "Pricing", href: "/apps-gallery/passgen#pricing" },
+        { name: "Home", href: "https://mdeploy.dev" },
+        { name: "PassGen", href: "/passgen" },
+        { name: "Pricing", href: "/passgen#pricing" },
         { name: "Projects", href: "/#projects" },
         { name: "How I Build", href: "/#process" },
         { name: "Contact", href: "/#contact" },
@@ -82,7 +83,7 @@ export function Navbar() {
                 </nav>
 
                 {/* Mobile Nav Toggle */}
-                <button className="md:hidden text-slate-300" onClick={() => setIsOpen(!isOpen)}>
+                <button className="md:hidden text-slate-300 cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
                     {isOpen ? <X /> : <Menu />}
                 </button>
             </div>

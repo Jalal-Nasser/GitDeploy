@@ -19,9 +19,10 @@ import {
     ChevronRight,
     X,
 } from "lucide-react";
-import { Button } from "../../components/ui/Button";
-import { Badge } from "../../components/ui/Badge";
-import { Card } from "../../components/ui/Card";
+import { Button } from "../components/ui/Button";
+import { Badge } from "../components/ui/Badge";
+import { Card } from "../components/ui/Card";
+import { PricingCard } from "../components/ui/PricingCard";
 
 
 
@@ -371,107 +372,113 @@ function Interface() {
 
 
 
+
 function Pricing() {
+    const [interval, setInterval] = React.useState<"MONTH" | "YEAR">("YEAR");
+    const router = require("next/navigation").useRouter();
+
     return (
         <section id="pricing" className="py-24 relative">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Simple Pricing</h2>
-                    <p className="text-slate-400">Choose the plan that fits your security needs.</p>
+                    <Badge className="mb-4">Flexible Pricing</Badge>
+                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Choose Your Plan</h2>
+                    <p className="text-slate-400">Secure, offline-first password management for everyone.</p>
+
+                    {/* Billing Toggle */}
+                    <div className="flex items-center justify-center mt-8 space-x-4">
+                        <span className={`text-sm font-medium ${interval === "MONTH" ? "text-white" : "text-slate-500"}`}>Monthly</span>
+                        <button
+                            onClick={() => setInterval(interval === "MONTH" ? "YEAR" : "MONTH")}
+                            className="relative w-14 h-7 bg-slate-800 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-black"
+                        >
+                            <span
+                                className={`absolute left-1 top-1 bg-white w-5 h-5 rounded-full transition-transform transform ${interval === "YEAR" ? "translate-x-7" : ""
+                                    }`}
+                            />
+                        </button>
+                        <span className={`text-sm font-medium ${interval === "YEAR" ? "text-white" : "text-slate-500"}`}>
+                            Yearly <span className="text-green-400 text-xs ml-1 font-bold">(Save ~17%)</span>
+                        </span>
+                    </div>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                     {/* Free Plan */}
-                    <Card className="p-8 border-slate-800 bg-transparent hover:border-slate-700 flex flex-col">
-                        <h3 className="text-2xl font-bold text-white mb-2">Free</h3>
-                        <div className="text-4xl font-bold text-white mb-6">$0</div>
-                        <p className="text-slate-400 mb-8">Essential password generation for local use.</p>
+                    <PricingCard
+                        title="FREE"
+                        price={interval === "YEAR" ? "$0" : "$0"}
+                        sarPrice="0 SAR"
+                        description="Offline encrypted vault for personal use."
+                        features={[
+                            "Offline Encrypted Vault",
+                            "Password Generator",
+                            "Limit: 4 Stored Passwords",
+                            "Limit: 3 Secrets / Day",
+                            "No Cloud Backup"
+                        ]}
+                        buttonText="Download Now"
+                        onButtonClick={() => window.open("https://github.com/Jalal-Nasser/PassGen/releases/download/v1.0.6/PassGen.Setup.1.0.6.exe", "_blank")}
+                    />
 
-                        <ul className="space-y-4 mb-8 flex-1">
-                            <li className="flex items-center gap-3 text-slate-300">
-                                <Check className="w-5 h-5 text-green-500" />
-                                Store up to 4 passwords locally
-                            </li>
-                            <li className="flex items-center gap-3 text-slate-300">
-                                <Check className="w-5 h-5 text-green-500" />
-                                Secure Random Generator
-                            </li>
-                            <li className="flex items-center gap-3 text-slate-500">
-                                <X className="w-5 h-5" />
-                                Cloud Sync
-                            </li>
-                        </ul>
-                        <Button variant="outline" className="w-full" onClick={() => window.open("https://github.com/Jalal-Nasser/PassGen/releases/download/v1.0.6/PassGen.Setup.1.0.6.exe", "_blank")}>
-                            Download Free
-                        </Button>
-                    </Card>
+                    {/* PRO Plan */}
+                    <PricingCard
+                        title="PRO"
+                        price={interval === "YEAR" ? "$4.92" : "$5.99"}
+                        sarPrice={interval === "YEAR" ? "19.92 SAR" : "24.99 SAR"}
+                        description="Removes all local limits. For power users."
+                        features={[
+                            "Everything in Free",
+                            "Unlimited Vault Storage",
+                            "Developer Secret Generator",
+                            "Project Folder Selection",
+                            ".env Injection",
+                            "No Cloud Required"
+                        ]}
+                        buttonText="Go Premium"
+                        onButtonClick={() => router.push("/passgen/pricing")}
+                    />
 
-                    {/* Premium Plan */}
-                    <Card className="p-8 border-purple-500/50 bg-purple-900/10 hover:border-purple-500 relative overflow-hidden flex flex-col">
-                        <div className="absolute top-0 right-0 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-                            POPULAR
-                        </div>
-                        <h3 className="text-2xl font-bold text-white mb-2">Premium</h3>
-                        <div className="text-4xl font-bold text-white mb-6">$15<span className="text-lg text-slate-400 font-normal">/year</span></div>
-                        <p className="text-slate-400 mb-8">Complete cloud sync and unlimited storage.</p>
+                    {/* CLOUD Plan */}
+                    <PricingCard
+                        isPopular
+                        title="CLOUD"
+                        price={interval === "YEAR" ? "$7.42" : "$8.99"}
+                        sarPrice={interval === "YEAR" ? "28.25 SAR" : "37.99 SAR"}
+                        description="Recommended. Encrypted cloud backup."
+                        features={[
+                            "Everything in PRO",
+                            "Google Drive Backup",
+                            "Encrypted Cloud Restore",
+                            "Dropbox (Coming Soon)",
+                            "OneDrive (Coming Soon)"
+                        ]}
+                        buttonText="Go Premium"
+                        onButtonClick={() => router.push("/passgen/pricing")}
+                    />
 
-                        <ul className="space-y-4 mb-8 flex-1">
-                            <li className="flex items-center gap-3 text-slate-300">
-                                <Check className="w-5 h-5 text-purple-400" />
-                                Unlimited password storage
-                            </li>
-                            <li className="flex items-center gap-3 text-slate-300">
-                                <Check className="w-5 h-5 text-purple-400" />
-                                Cloud sync (Google Drive, AWS, DO)
-                            </li>
-                            <li className="flex items-center gap-3 text-slate-300">
-                                <Check className="w-5 h-5 text-purple-400" />
-                                Automatic backups
-                            </li>
-                            <li className="flex items-center gap-3 text-slate-300">
-                                <Check className="w-5 h-5 text-purple-400" />
-                                Priority support
-                            </li>
-                        </ul>
-
-                        <Button className="w-full" onClick={() => window.location.href = "/apps-gallery/passgen/pricing"}>
-                            Get Premium
-                        </Button>
-                    </Card>
-
-                    {/* Enterprise Plan */}
-                    <Card className="p-8 border-slate-800 bg-transparent hover:border-blue-500/50 flex flex-col">
-                        <h3 className="text-2xl font-bold text-white mb-2">Enterprise</h3>
-                        <div className="text-4xl font-bold text-white mb-6">Custom</div>
-                        <p className="text-slate-400 mb-8">Advanced security for large organizations.</p>
-
-                        <ul className="space-y-4 mb-8 flex-1">
-                            <li className="flex items-center gap-3 text-slate-300">
-                                <Check className="w-5 h-5 text-blue-500" />
-                                Single Sign-On (SSO)
-                            </li>
-                            <li className="flex items-center gap-3 text-slate-300">
-                                <Check className="w-5 h-5 text-blue-500" />
-                                Advanced Audit Logs
-                            </li>
-                            <li className="flex items-center gap-3 text-slate-300">
-                                <Check className="w-5 h-5 text-blue-500" />
-                                Dedicated Success Manager
-                            </li>
-                            <li className="flex items-center gap-3 text-slate-300">
-                                <Check className="w-5 h-5 text-blue-500" />
-                                Custom Contract & SLA
-                            </li>
-                        </ul>
-                        <Button variant="outline" className="w-full" onClick={() => window.location.href = "/#contact"}>
-                            Contact Sales
-                        </Button>
-                    </Card>
+                    {/* POWER Plan */}
+                    <PricingCard
+                        title="POWER"
+                        price={interval === "YEAR" ? "$10.75" : "$12.99"}
+                        sarPrice={interval === "YEAR" ? "41.58 SAR" : "54.99 SAR"}
+                        description="For teams & enterprise. S3 & BYOS."
+                        features={[
+                            "Everything in CLOUD",
+                            "S3-Compatible Storage",
+                            "Use AWS, R2, MinIO",
+                            "Supabase (Coming Soon)",
+                            "Priority Support Badge"
+                        ]}
+                        buttonText="Go Premium"
+                        onButtonClick={() => router.push("/passgen/pricing")}
+                    />
                 </div>
             </div>
         </section>
     );
 }
+
 
 
 function DownloadSection({ downloadCount }: { downloadCount: number | null }) {
