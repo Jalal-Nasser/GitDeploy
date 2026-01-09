@@ -15,7 +15,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         verificationTokensTable: verificationTokens,
     }),
     providers: [
-        Google,
+        Google({
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        }),
         GitHub({
             clientId: process.env.GITHUB_CLIENT_ID,
             clientSecret: process.env.GITHUB_CLIENT_SECRET,
