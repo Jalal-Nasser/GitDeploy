@@ -74,7 +74,7 @@ export async function POST(req: Request) {
             id: orderId,
             userId: session.user.id,
             plan: plan,
-            interval: interval,
+            billingInterval: interval,
             amountUsd: amount.toString(),
             nowpaymentsInvoiceId: invoiceData.id,
             status: "PENDING",

@@ -3,7 +3,7 @@ import { pgTable, text, timestamp, boolean, uuid, integer, pgEnum, decimal } fro
 import type { AdapterAccount } from "next-auth/adapters";
 
 export const planEnum = pgEnum("plan", ["FREE", "PRO", "CLOUD", "POWER"]);
-export const intervalEnum = pgEnum("interval", ["MONTH", "YEAR"]);
+export const intervalEnum = pgEnum("billing_interval", ["MONTH", "YEAR"]);
 export const paymentStatusEnum = pgEnum("payment_status", ["PENDING", "COMPLETED", "FAILED", "REFUNDED"]);
 
 export const users = pgTable("user", {
@@ -84,7 +84,7 @@ export const payments = pgTable("payment", {
         .notNull()
         .references(() => users.id, { onDelete: "cascade" }),
     plan: planEnum("plan").notNull(),
-    interval: intervalEnum("interval").notNull(),
+    billingInterval: intervalEnum("billingInterval").notNull(),
     amountUsd: decimal("amountUsd", { precision: 10, scale: 2 }).notNull(),
     nowpaymentsInvoiceId: text("nowpaymentsInvoiceId"),
     status: paymentStatusEnum("status").notNull().default("PENDING"),
