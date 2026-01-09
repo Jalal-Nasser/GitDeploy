@@ -14,7 +14,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         sessionsTable: sessions,
         verificationTokensTable: verificationTokens,
     }),
-    providers: [Google, GitHub],
+    providers: [
+        Google,
+        GitHub({
+            clientId: process.env.GITHUB_CLIENT_ID,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        })
+    ],
     callbacks: {
         session: async ({ session, user }) => {
             if (session?.user) {
