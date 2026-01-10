@@ -424,8 +424,9 @@ function Pricing() {
                     {/* PRO Plan */}
                     <PricingCard
                         title="PRO"
-                        price={interval === "YEAR" ? "$4.92" : "$5.99"}
-                        sarPrice={interval === "YEAR" ? "19.92 SAR" : "24.99 SAR"}
+                        price={interval === "YEAR" ? "$4.67" : "$5.69"} // Original 59/12=4.92, 5.99. 5% off: 56.05/12=4.67, 5.69
+                        sarPrice={interval === "YEAR" ? "18.92 SAR" : "23.74 SAR"} // 19.92->18.92, 24.99->23.74
+                        originalPrice={interval === "YEAR" ? "$4.92/mo" : "$5.99/mo"}
                         description="Removes all local limits. For power users."
                         features={[
                             "Everything in Free",
@@ -435,7 +436,7 @@ function Pricing() {
                             ".env Injection",
                             "No Cloud Required"
                         ]}
-                        buttonText={interval === "YEAR" ? "Pay $59 / year" : "Pay $5.99 / month"}
+                        buttonText={interval === "YEAR" ? "Pay $56 / year" : "Pay $5.69 / month"}
                         onButtonClick={() => router.push("/passgen/pricing")}
                     />
 
@@ -443,8 +444,9 @@ function Pricing() {
                     <PricingCard
                         isPopular
                         title="CLOUD"
-                        price={interval === "YEAR" ? "$7.42" : "$8.99"}
-                        sarPrice={interval === "YEAR" ? "28.25 SAR" : "37.99 SAR"}
+                        price={interval === "YEAR" ? "$7.04" : "$8.54"} // Original 89/12=7.41, 8.99. 5% off: 84.55/12=7.04, 8.54
+                        sarPrice={interval === "YEAR" ? "26.83 SAR" : "36.09 SAR"} // 28.25->26.83, 37.99->36.09
+                        originalPrice={interval === "YEAR" ? "$7.42/mo" : "$8.99/mo"}
                         description="Recommended. Encrypted cloud backup."
                         features={[
                             "Everything in PRO",
@@ -453,15 +455,16 @@ function Pricing() {
                             "Dropbox (Coming Soon)",
                             "OneDrive (Coming Soon)"
                         ]}
-                        buttonText={interval === "YEAR" ? "Pay $89 / year" : "Pay $8.99 / month"}
+                        buttonText={interval === "YEAR" ? "Pay $84 / year" : "Pay $8.54 / month"}
                         onButtonClick={() => router.push("/passgen/pricing")}
                     />
 
                     {/* POWER Plan */}
                     <PricingCard
                         title="POWER"
-                        price={interval === "YEAR" ? "$10.75" : "$12.99"}
-                        sarPrice={interval === "YEAR" ? "41.58 SAR" : "54.99 SAR"}
+                        price={interval === "YEAR" ? "$10.21" : "$12.34"} // Original 129/12=10.75, 12.99. 5% off: 122.55/12=10.21, 12.34
+                        sarPrice={interval === "YEAR" ? "39.50 SAR" : "52.24 SAR"} // 41.58->39.50, 54.99->52.24
+                        originalPrice={interval === "YEAR" ? "$10.75/mo" : "$12.99/mo"}
                         description="For teams & enterprise. S3 & BYOS."
                         features={[
                             "Everything in CLOUD",
@@ -470,7 +473,7 @@ function Pricing() {
                             "Supabase (Coming Soon)",
                             "Priority Support Badge"
                         ]}
-                        buttonText={interval === "YEAR" ? "Pay $129 / year" : "Pay $12.99 / month"}
+                        buttonText={interval === "YEAR" ? "Pay $122 / year" : "Pay $12.34 / month"}
                         onButtonClick={() => router.push("/passgen/pricing")}
                     />
                 </div>

@@ -31,7 +31,8 @@ export async function POST(req: Request) {
         }
 
         const { plan, interval } = result.data;
-        const amount = PRICES[plan][interval];
+        const originalAmount = PRICES[plan][interval];
+        const amount = Number((originalAmount * 0.95).toFixed(2)); // Apply 5% discount
         const orderId = crypto.randomUUID();
 
         // NowPayments API: Create Invoice

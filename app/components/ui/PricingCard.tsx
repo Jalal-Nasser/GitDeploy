@@ -8,6 +8,7 @@ interface PricingCardProps {
     title: string;
     price: string;
     sarPrice: string;
+    originalPrice?: string;
     description: string;
     features: string[];
     isPopular?: boolean;
@@ -21,6 +22,7 @@ export const PricingCard = ({
     title,
     price,
     sarPrice,
+    originalPrice,
     description,
     features,
     isPopular = false,
@@ -47,6 +49,11 @@ export const PricingCard = ({
                     <span className="text-3xl font-bold text-white">{price}</span>
                     <span className="text-slate-500 ml-2">/mo</span>
                 </div>
+                {originalPrice && (
+                    <div className="text-sm text-slate-400 line-through decoration-red-500/50 decoration-2">
+                        {originalPrice}
+                    </div>
+                )}
                 <div className="text-sm text-slate-500 mt-1">
                     ≈ {sarPrice}
                 </div>

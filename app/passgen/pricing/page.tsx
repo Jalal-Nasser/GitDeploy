@@ -104,8 +104,9 @@ export default function PricingPage() {
                     {/* PRO Plan */}
                     <PricingCard
                         title="PRO"
-                        price={interval === "YEAR" ? "$4.92" : "$5.99"} // 59/12 approx 4.92
-                        sarPrice={interval === "YEAR" ? "19.92 SAR" : "24.99 SAR"} // 239/12 approx 19.91
+                        price={interval === "YEAR" ? "$4.67" : "$5.69"}
+                        sarPrice={interval === "YEAR" ? "18.92 SAR" : "23.74 SAR"}
+                        originalPrice={interval === "YEAR" ? "$4.92/mo" : "$5.99/mo"}
                         description="Removes all local limits. For power users."
                         features={[
                             "Everything in Free",
@@ -115,7 +116,7 @@ export default function PricingPage() {
                             ".env Injection",
                             "No Cloud Required"
                         ]}
-                        buttonText={interval === "YEAR" ? "Pay $59 / year" : "Pay $5.99 / month"}
+                        buttonText={interval === "YEAR" ? "Pay $56 / year" : "Pay $5.69 / month"}
                         onButtonClick={() => handleCheckout("PRO")}
                         isLoading={loadingPlan === "PRO"}
                     />
@@ -124,8 +125,9 @@ export default function PricingPage() {
                     <PricingCard
                         isPopular
                         title="CLOUD"
-                        price={interval === "YEAR" ? "$7.42" : "$8.99"} // 89/12
-                        sarPrice={interval === "YEAR" ? "28.25 SAR" : "37.99 SAR"} // 339/12
+                        price={interval === "YEAR" ? "$7.04" : "$8.54"}
+                        sarPrice={interval === "YEAR" ? "26.83 SAR" : "36.09 SAR"}
+                        originalPrice={interval === "YEAR" ? "$7.42/mo" : "$8.99/mo"}
                         description="Recommended. Encrypted cloud backup & restore."
                         features={[
                             "Everything in PRO",
@@ -134,7 +136,7 @@ export default function PricingPage() {
                             "Dropbox (Coming Soon)",
                             "OneDrive (Coming Soon)"
                         ]}
-                        buttonText={interval === "YEAR" ? "Pay $89 / year" : "Pay $8.99 / month"}
+                        buttonText={interval === "YEAR" ? "Pay $84 / year" : "Pay $8.54 / month"}
                         onButtonClick={() => handleCheckout("CLOUD")}
                         isLoading={loadingPlan === "CLOUD"}
                     />
@@ -142,8 +144,9 @@ export default function PricingPage() {
                     {/* POWER Plan */}
                     <PricingCard
                         title="POWER"
-                        price={interval === "YEAR" ? "$10.75" : "$12.99"} // 129/12
-                        sarPrice={interval === "YEAR" ? "41.58 SAR" : "54.99 SAR"} // 499/12
+                        price={interval === "YEAR" ? "$10.21" : "$12.34"}
+                        sarPrice={interval === "YEAR" ? "39.50 SAR" : "52.24 SAR"}
+                        originalPrice={interval === "YEAR" ? "$10.75/mo" : "$12.99/mo"}
                         description="For teams & enterprise. S3 & BYOS storage."
                         features={[
                             "Everything in CLOUD",
@@ -152,7 +155,7 @@ export default function PricingPage() {
                             "Supabase (Coming Soon)",
                             "Priority Support Badge"
                         ]}
-                        buttonText={interval === "YEAR" ? "Pay $129 / year" : "Pay $12.99 / month"}
+                        buttonText={interval === "YEAR" ? "Pay $122 / year" : "Pay $12.34 / month"}
                         onButtonClick={() => handleCheckout("POWER")}
                         isLoading={loadingPlan === "POWER"}
                     />
