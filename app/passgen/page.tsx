@@ -115,13 +115,13 @@ function Hero({ downloadCount }: { downloadCount: number | null }) {
                     <Button
                         size="lg"
                         className="h-14 px-8 text-lg"
-                        onClick={() => window.open("https://github.com/Jalal-Nasser/PassGen/releases/download/v1.0.6/PassGen.Setup.1.0.6.exe", "_blank")}
+                        onClick={() => window.open("https://github.com/mDeploys/PassGen/releases/download/v1.0.7/PassGen.Setup.1.0.7.exe", "_blank")}
                     >
                         <Download className="w-6 h-6 mr-3" />
                         Download for Windows
                     </Button>
                     <p className="mt-4 text-sm text-slate-500">
-                        Version 1.0.6 • Windows 10/11
+                        Version 1.0.7 • Windows 10/11
                         {downloadCount !== null && (
                             <span className="text-slate-400"> • {downloadCount.toLocaleString()} Downloads</span>
                         )}
@@ -613,7 +613,7 @@ function Pricing() {
                             "No Cloud Backup"
                         ]}
                         buttonText="Download Now"
-                        onButtonClick={() => window.open("https://github.com/Jalal-Nasser/PassGen/releases/download/v1.0.6/PassGen.Setup.1.0.6.exe", "_blank")}
+                        onButtonClick={() => window.open("https://github.com/mDeploys/PassGen/releases/download/v1.0.7/PassGen.Setup.1.0.7.exe", "_blank")}
                     />
 
                     {/* PRO Plan */}
@@ -688,10 +688,10 @@ function DownloadSection({ downloadCount }: { downloadCount: number | null }) {
                 <Button
                     size="lg"
                     className="h-14 px-8 text-lg"
-                    onClick={() => window.open("https://github.com/Jalal-Nasser/PassGen/releases/download/v1.0.6/PassGen.Setup.1.0.6.exe", "_blank")}
+                    onClick={() => window.open("https://github.com/mDeploys/PassGen/releases/download/v1.0.7/PassGen.Setup.1.0.7.exe", "_blank")}
                 >
                     <Download className="w-6 h-6 mr-3" />
-                    Download PassGen v1.0.6
+                    Download PassGen v1.0.7
                 </Button>
                 {downloadCount !== null && (
                     <p className="mt-4 text-sm text-slate-400">
