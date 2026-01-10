@@ -41,6 +41,7 @@ export function Navbar() {
         { name: "Pricing", href: "/passgen#pricing" },
         { name: "Projects", href: "/#projects" },
         { name: "How I Build", href: "/#process" },
+        { name: "Support", href: "https://github.com/mDeploys/PassGen/issues" },
         { name: "Contact", href: "/#contact" },
     ];
 
