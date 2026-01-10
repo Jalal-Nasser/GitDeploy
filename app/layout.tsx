@@ -36,7 +36,7 @@ export default function RootLayout({
   const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.className} min-h-screen bg-background text-foreground antialiased selection:bg-purple-500/30`}
       >
