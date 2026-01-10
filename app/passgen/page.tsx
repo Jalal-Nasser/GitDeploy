@@ -435,7 +435,7 @@ function Pricing() {
                             ".env Injection",
                             "No Cloud Required"
                         ]}
-                        buttonText="Go Premium"
+                        buttonText={interval === "YEAR" ? "Pay $59 / year" : "Pay $5.99 / month"}
                         onButtonClick={() => router.push("/passgen/pricing")}
                     />
 
@@ -453,7 +453,7 @@ function Pricing() {
                             "Dropbox (Coming Soon)",
                             "OneDrive (Coming Soon)"
                         ]}
-                        buttonText="Go Premium"
+                        buttonText={interval === "YEAR" ? "Pay $89 / year" : "Pay $8.99 / month"}
                         onButtonClick={() => router.push("/passgen/pricing")}
                     />
 
@@ -470,7 +470,7 @@ function Pricing() {
                             "Supabase (Coming Soon)",
                             "Priority Support Badge"
                         ]}
-                        buttonText="Go Premium"
+                        buttonText={interval === "YEAR" ? "Pay $129 / year" : "Pay $12.99 / month"}
                         onButtonClick={() => router.push("/passgen/pricing")}
                     />
                 </div>
