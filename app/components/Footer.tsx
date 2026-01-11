@@ -69,6 +69,7 @@ export function Footer() {
                         <ul className="space-y-2 text-sm">
                             <li><a className="text-muted-foreground hover:text-foreground" href="https://mdeploy.dev/calculator">Pricing</a></li>
                             <li><a className="text-muted-foreground hover:text-foreground" href="https://mdeploy.dev/contact">Contact us</a></li>
+                            <li><a className="text-muted-foreground hover:text-foreground" href="https://github.com/mDeploys/PassGen/blob/main/USER_GUIDE.md" target="_blank" rel="noopener noreferrer">Documentations</a></li>
                         </ul>
                     </div>
                     <div>
