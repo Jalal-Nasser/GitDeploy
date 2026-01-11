@@ -48,7 +48,7 @@ export function Footer() {
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-earth h-4 w-4" aria-hidden="true"><path d="M21.54 15H17a2 2 0 0 0-2 2v4.54"></path><path d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"></path><path d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"></path><circle cx="12" cy="12" r="10"></circle></svg>
                                     <span>Blog</span>
                                 </a>
-                                <a href="https://www.producthunt.com/@jalalnasser" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-2 text-sm text-muted-foreground transition hover:border-primary/60 hover:text-primary hover:bg-primary/5">
+                                <a href="https://www.producthunt.com/products/passgen-4/" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-2 text-sm text-muted-foreground transition hover:border-primary/60 hover:text-primary hover:bg-primary/5">
                                     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-4 w-4"><path d="M12 24C5.37 24 0 18.63 0 12S5.37 0 12 0s12 5.37 12 12-5.37 12-12 12zm1.6-11.8c1.32 0 2.4-1.08 2.4-2.4 0-1.32-1.08-2.4-2.4-2.4H10v9h2.4v-4.2h1.2z"></path></svg>
                                     <span>Product Hunt</span>
                                 </a>
