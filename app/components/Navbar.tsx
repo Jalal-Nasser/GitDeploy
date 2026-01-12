@@ -38,6 +38,7 @@ export function Navbar() {
     const navLinks = [
         { name: "Home", href: "https://mdeploy.dev" },
         { name: "PassGen", href: "/passgen" },
+        { name: "Demo", href: "https://passgen.mdeploy.dev/" },
         { name: "Pricing", href: "/passgen#pricing" },
         { name: "Projects", href: "/#projects" },
         { name: "How I Build", href: "/#process" },
