@@ -67,7 +67,7 @@ export function Navbar() {
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center gap-8">
                     {navLinks.map((link) => (
-                        <Link key={link.name} href={link.href} className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                        <Link key={link.name} href={link.href} className="text-sm font-medium text-slate-300 hover:text-[#f959ca] hover:drop-shadow-[0_0_8px_rgba(249,89,202,0.8)] transition-all duration-300">
                             {link.name}
                         </Link>
                     ))}
@@ -103,7 +103,7 @@ export function Navbar() {
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className="text-base font-medium text-slate-300 hover:text-white"
+                                    className="text-base font-medium text-slate-300 hover:text-[#f959ca] hover:drop-shadow-[0_0_8px_rgba(249,89,202,0.8)] transition-all duration-300"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {link.name}
