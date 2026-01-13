@@ -78,6 +78,11 @@ export function Footer() {
                             <li><a className="text-muted-foreground hover:text-foreground" href="https://mdeploy.dev/privacy">Privacy Policy</a></li>
                             <li><a className="text-muted-foreground hover:text-foreground" href="https://mdeploy.dev/terms">Terms of Service</a></li>
                         </ul>
+                        <div className="mt-6">
+                            <a href="https://www.producthunt.com/products/passgen-4/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-passgen-4" target="_blank" rel="noopener noreferrer">
+                                <img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1136094&theme=light" alt="PassGen - Secure Password Vault & Developer Secret Generator | Product Hunt" style={{ width: '250px', height: '54px' }} width="250" height="54" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
