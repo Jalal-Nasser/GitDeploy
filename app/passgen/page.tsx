@@ -565,7 +565,38 @@ function Interface() {
 
 function Pricing() {
     const [interval, setInterval] = React.useState<"MONTH" | "YEAR">("YEAR");
-    const router = require("next/navigation").useRouter();
+    const { useRouter, useSearchParams } = require("next/navigation");
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const installIdParam = searchParams?.get("installId") || "";
+    const readInstallIdFromUrl = () => {
+        if (typeof window === "undefined") return "";
+        return new URLSearchParams(window.location.search).get("installId") || "";
+    };
+
+    React.useEffect(() => {
+        const fromUrl = installIdParam || readInstallIdFromUrl();
+        if (fromUrl) {
+            localStorage.setItem("passgen-install-id", fromUrl);
+        }
+    }, [installIdParam]);
+
+    const getInstallId = () =>
+        readInstallIdFromUrl() || installIdParam || localStorage.getItem("passgen-install-id") || "";
+    const buildPricingUrl = (installId: string) =>
+        installId ? `/passgen/pricing?installId=${encodeURIComponent(installId)}` : "/passgen/pricing";
+    const openPricing = () => {
+        const installId = getInstallId();
+        if (installId) {
+            localStorage.setItem("passgen-install-id", installId);
+        }
+        const url = buildPricingUrl(installId);
+        if (typeof window !== "undefined") {
+            window.location.assign(url);
+        } else {
+            router.push(url);
+        }
+    };
 
     return (
         <section id="pricing" className="py-24 relative">
@@ -627,7 +658,7 @@ function Pricing() {
                             "No Cloud Required"
                         ]}
                         buttonText={interval === "YEAR" ? "Pay $56 / year" : "Pay $5.69 / month"}
-                        onButtonClick={() => router.push("/passgen/pricing")}
+                        onButtonClick={openPricing}
                     />
 
                     {/* CLOUD Plan */}
@@ -646,7 +677,7 @@ function Pricing() {
                             "OneDrive (Coming Soon)"
                         ]}
                         buttonText={interval === "YEAR" ? "Pay $84 / year" : "Pay $8.54 / month"}
-                        onButtonClick={() => router.push("/passgen/pricing")}
+                        onButtonClick={openPricing}
                     />
 
                     {/* POWER Plan */}
@@ -664,7 +695,7 @@ function Pricing() {
                             "Priority Support Badge"
                         ]}
                         buttonText={interval === "YEAR" ? "Pay $122 / year" : "Pay $12.34 / month"}
-                        onButtonClick={() => router.push("/passgen/pricing")}
+                        onButtonClick={openPricing}
                     />
                 </div>
             </div>

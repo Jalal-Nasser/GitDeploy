@@ -1,30 +1,57 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Badge } from "../../components/ui/Badge";
 import { PricingCard } from "../../components/ui/PricingCard";
 import { ComparisonTable } from "../../components/ui/ComparisonTable";
 import { ArrowLeft, Shield } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function PricingPage() {
     const [interval, setInterval] = useState<"MONTH" | "YEAR">("YEAR");
     const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const installIdParam = searchParams.get("installId") || "";
+    const readInstallIdFromUrl = () => {
+        if (typeof window === "undefined") return "";
+        return new URLSearchParams(window.location.search).get("installId") || "";
+    };
+
+    useEffect(() => {
+        const fromUrl = installIdParam || readInstallIdFromUrl();
+        if (fromUrl) {
+            localStorage.setItem("passgen-install-id", fromUrl);
+        }
+    }, [installIdParam]);
+
+    useEffect(() => {
+        const stored = localStorage.getItem("passgen-install-id") || "";
+        if (!installIdParam && stored) {
+            router.replace(`/passgen/pricing?installId=${encodeURIComponent(stored)}`);
+        }
+    }, [installIdParam, router]);
+
+    const getInstallId = () =>
+        readInstallIdFromUrl() || installIdParam || localStorage.getItem("passgen-install-id") || "";
 
     const handleCheckout = async (plan: string) => {
         try {
             setLoadingPlan(plan);
+            const installId = getInstallId();
             const response = await fetch("/api/checkout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ plan, interval }),
+                body: JSON.stringify({ plan, interval, installId }),
             });
 
             if (response.status === 401) {
-                router.push("/api/auth/signin?callbackUrl=/passgen/pricing");
+                const callbackUrl = installId
+                    ? `/passgen/pricing?installId=${encodeURIComponent(installId)}`
+                    : "/passgen/pricing";
+                router.push(`/api/auth/signin?callbackUrl=${encodeURIComponent(callbackUrl)}`);
                 return;
             }
 
