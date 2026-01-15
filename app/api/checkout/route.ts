@@ -8,6 +8,7 @@ import { z } from "zod";
 const checkoutSchema = z.object({
     plan: z.enum(["PRO", "CLOUD", "POWER"]),
     interval: z.enum(["MONTH", "YEAR"]),
+    installId: z.string().optional(),
 });
 
 const PRICES = {
@@ -30,10 +31,11 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Invalid request data" }, { status: 400 });
         }
 
-        const { plan, interval } = result.data;
+        const { plan, interval, installId } = result.data;
         const originalAmount = PRICES[plan][interval];
         const amount = Number((originalAmount * 0.95).toFixed(2)); // Apply 5% discount
         const orderId = crypto.randomUUID();
+        const installTag = installId ? ` • Install ID: ${installId}` : "";
 
         // NowPayments API: Create Invoice
         // Docs: https://documenter.getpostman.com/view/7928850/SzRxUm6b?version=latest#3c16223e-1088-4660-844c-9743a4115f5d
@@ -55,10 +57,10 @@ export async function POST(req: Request) {
                 price_amount: amount,
                 price_currency: "usd",
                 order_id: orderId,
-                order_description: `PassGen ${plan} Plan (${interval})`,
+                order_description: `PassGen ${plan} Plan (${interval})${installTag}`,
                 ipn_callback_url: `${process.env.NEXTAUTH_URL}/api/webhooks/nowpayments`,
-                success_url: `${process.env.NEXTAUTH_URL}/passgen/pricing?success=true`,
-                cancel_url: `${process.env.NEXTAUTH_URL}/passgen/pricing?canceled=true`,
+                success_url: `${process.env.NEXTAUTH_URL}/passgen/pricing?success=true${installId ? `&installId=${encodeURIComponent(installId)}` : ""}`,
+                cancel_url: `${process.env.NEXTAUTH_URL}/passgen/pricing?canceled=true${installId ? `&installId=${encodeURIComponent(installId)}` : ""}`,
             }),
         });
 
