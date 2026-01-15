@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { MsStoreBadge } from "../components/ui/MsStoreBadge";
+
 import { motion } from "framer-motion";
 import {
     Download,
@@ -112,14 +114,7 @@ function Hero({ downloadCount }: { downloadCount: number | null }) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                    <Button
-                        size="lg"
-                        className="h-14 px-8 text-lg"
-                        onClick={() => window.open("https://github.com/mDeploys/PassGen/releases/download/v1.0.7/PassGen.Setup.1.0.7.exe", "_blank")}
-                    >
-                        <Download className="w-6 h-6 mr-3" />
-                        Download for Windows
-                    </Button>
+                    <MsStoreBadge />
                     <p className="mt-4 text-sm text-slate-500">
                         Version 1.0.7 • Windows 10/11
                         {downloadCount !== null && (
@@ -685,14 +680,9 @@ function DownloadSection({ downloadCount }: { downloadCount: number | null }) {
             <div className="absolute inset-0 bg-purple-600/10 blur-3xl -z-10" />
             <div className="container mx-auto px-4 md:px-6">
                 <h2 className="text-3xl font-bold text-white mb-6">Start Securing Your Data Today</h2>
-                <Button
-                    size="lg"
-                    className="h-14 px-8 text-lg"
-                    onClick={() => window.open("https://github.com/mDeploys/PassGen/releases/download/v1.0.7/PassGen.Setup.1.0.7.exe", "_blank")}
-                >
-                    <Download className="w-6 h-6 mr-3" />
-                    Download PassGen v1.0.7
-                </Button>
+                <div className="flex justify-center">
+                    <MsStoreBadge />
+                </div>
                 {downloadCount !== null && (
                     <p className="mt-4 text-sm text-slate-400">
                         Join {downloadCount.toLocaleString()} users securing their data

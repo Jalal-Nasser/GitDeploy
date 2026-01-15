@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { MsStoreBadge } from "./ui/MsStoreBadge";
 
 export function Footer() {
     return (
@@ -83,6 +84,9 @@ export function Footer() {
                                 <img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1136094&theme=light" alt="PassGen - Secure Password Vault & Developer Secret Generator | Product Hunt" style={{ width: '250px', height: '54px' }} width="250" height="54" />
                             </a>
                         </div>
+                        <div className="mt-4">
+                            <MsStoreBadge style={{ width: '250px' }} />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -91,6 +95,6 @@ export function Footer() {
                     <p>© {new Date().getFullYear()} mDeploy. All rights reserved. · Developed by <a href="https://github.com/Jalal-Nasser" target="_blank" rel="noopener noreferrer" className="font-semibold text-purple-300 hover:text-purple-200">Jalal Nasser</a></p>
                 </div>
             </div>
-        </footer>
+        </footer >
     );
 }
