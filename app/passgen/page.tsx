@@ -565,24 +565,27 @@ function Interface() {
 
 function Pricing() {
     const [interval, setInterval] = React.useState<"MONTH" | "YEAR">("YEAR");
-    const { useRouter, useSearchParams } = require("next/navigation");
+    const { useRouter } = require("next/navigation");
     const router = useRouter();
-    const searchParams = useSearchParams();
-    const installIdParam = searchParams?.get("installId") || "";
+    const [installIdParam, setInstallIdParam] = React.useState("");
     const readInstallIdFromUrl = () => {
         if (typeof window === "undefined") return "";
         return new URLSearchParams(window.location.search).get("installId") || "";
     };
+    const readStoredInstallId = () => {
+        if (typeof window === "undefined") return "";
+        return localStorage.getItem("passgen-install-id") || "";
+    };
 
     React.useEffect(() => {
-        const fromUrl = installIdParam || readInstallIdFromUrl();
+        const fromUrl = readInstallIdFromUrl();
         if (fromUrl) {
             localStorage.setItem("passgen-install-id", fromUrl);
         }
-    }, [installIdParam]);
+        setInstallIdParam(fromUrl);
+    }, []);
 
-    const getInstallId = () =>
-        readInstallIdFromUrl() || installIdParam || localStorage.getItem("passgen-install-id") || "";
+    const getInstallId = () => installIdParam || readStoredInstallId();
     const buildPricingUrl = (installId: string) =>
         installId ? `/passgen/pricing?installId=${encodeURIComponent(installId)}` : "/passgen/pricing";
     const openPricing = () => {

@@ -7,35 +7,38 @@ import { ComparisonTable } from "../../components/ui/ComparisonTable";
 import { ArrowLeft, Shield } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function PricingPage() {
     const [interval, setInterval] = useState<"MONTH" | "YEAR">("YEAR");
     const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
     const router = useRouter();
-    const searchParams = useSearchParams();
-    const installIdParam = searchParams.get("installId") || "";
+    const [installIdParam, setInstallIdParam] = useState("");
     const readInstallIdFromUrl = () => {
         if (typeof window === "undefined") return "";
         return new URLSearchParams(window.location.search).get("installId") || "";
     };
+    const readStoredInstallId = () => {
+        if (typeof window === "undefined") return "";
+        return localStorage.getItem("passgen-install-id") || "";
+    };
 
     useEffect(() => {
-        const fromUrl = installIdParam || readInstallIdFromUrl();
+        const fromUrl = readInstallIdFromUrl();
         if (fromUrl) {
             localStorage.setItem("passgen-install-id", fromUrl);
         }
-    }, [installIdParam]);
+        setInstallIdParam(fromUrl);
+    }, []);
 
     useEffect(() => {
-        const stored = localStorage.getItem("passgen-install-id") || "";
+        const stored = readStoredInstallId();
         if (!installIdParam && stored) {
             router.replace(`/passgen/pricing?installId=${encodeURIComponent(stored)}`);
         }
     }, [installIdParam, router]);
 
-    const getInstallId = () =>
-        readInstallIdFromUrl() || installIdParam || localStorage.getItem("passgen-install-id") || "";
+    const getInstallId = () => installIdParam || readStoredInstallId();
 
     const handleCheckout = async (plan: string) => {
         try {
