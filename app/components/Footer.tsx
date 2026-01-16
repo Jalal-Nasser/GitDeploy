@@ -87,6 +87,11 @@ export function Footer() {
                         <div className="mt-4">
                             <MsStoreBadge style={{ width: '250px' }} />
                         </div>
+                        <div className="mt-4">
+                            <a href="https://www.producthunt.com/products/passgen-4?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-passgen-secrets-vault" target="_blank" rel="noopener noreferrer">
+                                <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1062539&theme=neutral&t=1768564164239" alt="PassGen Secrets Vault - Password Vault & Developer Secret Manager for Windows | Product Hunt" style={{ width: '250px', height: '54px' }} width="250" height="54" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
