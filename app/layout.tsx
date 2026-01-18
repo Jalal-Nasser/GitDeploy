@@ -49,6 +49,21 @@ export default function RootLayout({
           />
         ) : null}
 
+        {/* Google Tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-96Z376JRPQ"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-96Z376JRPQ');
+          `}
+        </Script>
+
         <Navbar />
         <Providers>
           {children}
