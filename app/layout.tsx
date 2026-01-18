@@ -10,15 +10,30 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mdeploy.dev"),
   title: "mDeploy - PassGen",
   description:
     "mDeploy builds and ships production software. Explore my portfolio, repositories, and development process.",
+  keywords: ["Software Engineer", "React", "Next.js", "TypeScript", "PassGen", "mDeploy", "Web Development"],
+  authors: [{ name: "Jalal Nasser", url: "https://github.com/Jalal-Nasser" }],
+  creator: "Jalal Nasser",
+  publisher: "mDeploy",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "mDeploy - PassGen",
     description: "Production software shipped daily. View my GitHub portfolio.",
     type: "website",
     locale: "en_US",
     siteName: "mDeploy",
+    url: "https://mdeploy.dev",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "mDeploy - PassGen",
+    description: "Production software shipped daily. View my GitHub portfolio.",
+    creator: "@jalalnasser",
   },
 };
 
