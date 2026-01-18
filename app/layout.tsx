@@ -10,11 +10,11 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "mDeploy — GitHub Hub",
+  title: "mDeploy - PassGen",
   description:
     "mDeploy builds and ships production software. Explore my portfolio, repositories, and development process.",
   openGraph: {
-    title: "mDeploy — GitHub Hub",
+    title: "mDeploy - PassGen",
     description: "Production software shipped daily. View my GitHub portfolio.",
     type: "website",
     locale: "en_US",
