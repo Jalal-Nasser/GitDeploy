@@ -181,6 +181,23 @@ function Hero() {
                         <ArrowRight className="w-5 h-5 ml-2" />
                     </Button>
                 </motion.div>
+
+                <motion.div
+                    className="mt-12 w-full max-w-4xl relative rounded-xl overflow-hidden shadow-2xl shadow-purple-500/20 border border-purple-500/20"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.4 }}
+                >
+                    <div className="relative pt-[56.25%] bg-slate-900/50">
+                        <iframe
+                            className="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/IGNg9DonVlo?autoplay=1&loop=1&playlist=IGNg9DonVlo&controls=0&rel=0"
+                            title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                        />
+                    </div>
+                </motion.div>
             </div>
         </section>
     );
