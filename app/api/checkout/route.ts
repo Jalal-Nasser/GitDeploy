@@ -1,7 +1,7 @@
-
 import { auth } from "@/auth";
 import { db } from "@/db";
-import { payments, planEnum, subscriptionPeriodEnum } from "@/db/schema";
+import { payments } from "@/db/schema";
+import { buildCryptomusHeaders, getCryptomusErrorMessage } from "@/lib/cryptomus";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -33,57 +33,61 @@ export async function POST(req: Request) {
 
         const { plan, interval, installId } = result.data;
         const originalAmount = PRICES[plan][interval];
-        const amount = Number((originalAmount * 0.95).toFixed(2)); // Apply 5% discount
+        const amount = Number((originalAmount * 0.95).toFixed(2));
         const orderId = crypto.randomUUID();
-        const installTag = installId ? ` • Install ID: ${installId}` : "";
+        const installTag = installId ? ` | Install ID: ${installId}` : "";
 
-        // NowPayments API: Create Invoice
-        // Docs: https://documenter.getpostman.com/view/7928850/SzRxUm6b?version=latest#3c16223e-1088-4660-844c-9743a4115f5d
-        // Using /v1/invoice endpoint for simple checkout
-        const apiKey = process.env.NOWPAYMENTS_API_KEY;
-        const apiBase = process.env.NOWPAYMENTS_API_BASE || "https://api.nowpayments.io/v1";
+        const appUrl = process.env.NEXTAUTH_URL || process.env.AUTH_URL;
+        const merchantId = process.env.CRYPTOMUS_MERCHANT_ID;
+        const apiKey = process.env.CRYPTOMUS_PAYMENT_API_KEY;
+        const apiBase = process.env.CRYPTOMUS_API_BASE || "https://api.cryptomus.com";
 
-        if (!apiKey) {
+        if (!appUrl || !merchantId || !apiKey) {
             return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
         }
 
-        const invoiceResponse = await fetch(`${apiBase}/invoice`, {
+        const invoicePayload = {
+            amount: amount.toFixed(2),
+            currency: "USD",
+            order_id: orderId,
+            additional_data: `PassGen ${plan} Plan (${interval})${installTag}`,
+            url_callback: `${appUrl}/api/webhooks/cryptomus`,
+            url_success: `${appUrl}/passgen/pricing?success=true${installId ? `&installId=${encodeURIComponent(installId)}` : ""}`,
+            url_return: `${appUrl}/passgen/pricing?canceled=true${installId ? `&installId=${encodeURIComponent(installId)}` : ""}`,
+        };
+
+        const invoiceResponse = await fetch(`${apiBase}/v1/payment`, {
             method: "POST",
-            headers: {
-                "x-api-key": apiKey,
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                price_amount: amount,
-                price_currency: "usd",
-                order_id: orderId,
-                order_description: `PassGen ${plan} Plan (${interval})${installTag}`,
-                ipn_callback_url: `${process.env.NEXTAUTH_URL}/api/webhooks/nowpayments`,
-                success_url: `${process.env.NEXTAUTH_URL}/passgen/pricing?success=true${installId ? `&installId=${encodeURIComponent(installId)}` : ""}`,
-                cancel_url: `${process.env.NEXTAUTH_URL}/passgen/pricing?canceled=true${installId ? `&installId=${encodeURIComponent(installId)}` : ""}`,
-            }),
+            headers: buildCryptomusHeaders(invoicePayload, merchantId, apiKey),
+            body: JSON.stringify(invoicePayload),
         });
 
-        if (!invoiceResponse.ok) {
-            const errorText = await invoiceResponse.text();
-            console.error("NowPayments Error:", errorText);
+        const invoiceResponseBody = await invoiceResponse.json().catch(() => null);
+
+        if (!invoiceResponse.ok || invoiceResponseBody?.state !== 0) {
+            const errorMessage = getCryptomusErrorMessage(invoiceResponseBody);
+            console.error("Cryptomus Error:", invoiceResponseBody);
+            return NextResponse.json({ error: errorMessage }, { status: 502 });
+        }
+
+        const invoiceData = invoiceResponseBody?.result;
+
+        if (!invoiceData?.uuid || !invoiceData?.url) {
+            console.error("Cryptomus Error: Missing invoice data", invoiceResponseBody);
             return NextResponse.json({ error: "Failed to create invoice" }, { status: 502 });
         }
 
-        const invoiceData = await invoiceResponse.json();
-
-        // Record pending payment
         await db.insert(payments).values({
             id: orderId,
             userId: session.user.id,
             plan: plan,
             subscriptionPeriod: interval,
             amountUsd: amount.toString(),
-            nowpaymentsInvoiceId: invoiceData.id,
+            cryptomusInvoiceUuid: invoiceData.uuid,
             status: "PENDING",
         });
 
-        return NextResponse.json({ payment_url: invoiceData.invoice_url, invoice_id: invoiceData.id });
+        return NextResponse.json({ payment_url: invoiceData.url, invoice_id: invoiceData.uuid });
 
     } catch (error) {
         console.error("Checkout error:", error);

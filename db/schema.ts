@@ -86,7 +86,7 @@ export const payments = pgTable("payment", {
     plan: planEnum("plan").notNull(),
     subscriptionPeriod: subscriptionPeriodEnum("subscriptionPeriod").notNull(),
     amountUsd: decimal("amountUsd", { precision: 10, scale: 2 }).notNull(),
-    nowpaymentsInvoiceId: text("nowpaymentsInvoiceId"),
+    cryptomusInvoiceUuid: text("nowpaymentsInvoiceId"), // Reuse the existing column to avoid a breaking DB migration.
     status: paymentStatusEnum("status").notNull().default("PENDING"),
     createdAt: timestamp("createdAt", { mode: "date" }).defaultNow(),
     updatedAt: timestamp("updatedAt", { mode: "date" }).defaultNow(),

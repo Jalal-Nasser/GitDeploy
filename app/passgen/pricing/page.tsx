@@ -205,7 +205,7 @@ export default function PricingPage() {
                     <div className="mt-8 text-center text-slate-500 text-sm">
                         <p className="flex items-center justify-center gap-2 mb-2">
                             <Shield className="w-4 h-4" />
-                            Secure crypto payments powered by NowPayments.
+                            Secure crypto payments powered by Cryptomus.
                         </p>
                         <p>Prices in SAR are approximate and subject to exchange rates.</p>
                     </div>
