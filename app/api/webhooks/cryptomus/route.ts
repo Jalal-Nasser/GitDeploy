@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { payments, subscriptions } from "@/db/schema";
-import { createCryptomusSign } from "@/lib/cryptomus";
+import { createCryptomusWebhookSign } from "@/lib/cryptomus";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
         }
 
         const { sign: _unused, ...signedPayload } = body;
-        const calculatedSign = createCryptomusSign(signedPayload, paymentApiKey);
+        const calculatedSign = createCryptomusWebhookSign(signedPayload, paymentApiKey);
 
         if (receivedSign !== calculatedSign) {
             console.error("Invalid Cryptomus signature", { received: receivedSign, calculated: calculatedSign });

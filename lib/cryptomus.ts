@@ -4,15 +4,19 @@ export function escapeJsonSlashes(value: string) {
     return value.replace(/\//g, "\\/");
 }
 
-export function createCryptomusSign(payload: unknown, apiKey: string) {
+export function createCryptomusRequestSign(body: string, apiKey: string) {
+    return crypto.createHash("md5").update(Buffer.from(body).toString("base64") + apiKey).digest("hex");
+}
+
+export function createCryptomusWebhookSign(payload: unknown, apiKey: string) {
     const json = escapeJsonSlashes(JSON.stringify(payload));
     return crypto.createHash("md5").update(Buffer.from(json).toString("base64") + apiKey).digest("hex");
 }
 
-export function buildCryptomusHeaders(payload: unknown, merchantId: string, apiKey: string) {
+export function buildCryptomusHeaders(body: string, merchantId: string, apiKey: string) {
     return {
         merchant: merchantId,
-        sign: createCryptomusSign(payload, apiKey),
+        sign: createCryptomusRequestSign(body, apiKey),
         "Content-Type": "application/json",
     };
 }

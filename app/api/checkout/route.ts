@@ -55,11 +55,12 @@ export async function POST(req: Request) {
             url_success: `${appUrl}/passgen/pricing?success=true${installId ? `&installId=${encodeURIComponent(installId)}` : ""}`,
             url_return: `${appUrl}/passgen/pricing?canceled=true${installId ? `&installId=${encodeURIComponent(installId)}` : ""}`,
         };
+        const invoiceBody = JSON.stringify(invoicePayload);
 
         const invoiceResponse = await fetch(`${apiBase}/v1/payment`, {
             method: "POST",
-            headers: buildCryptomusHeaders(invoicePayload, merchantId, apiKey),
-            body: JSON.stringify(invoicePayload),
+            headers: buildCryptomusHeaders(invoiceBody, merchantId, apiKey),
+            body: invoiceBody,
         });
 
         const invoiceResponseBody = await invoiceResponse.json().catch(() => null);
