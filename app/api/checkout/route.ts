@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import { db } from "@/db";
 import { payments } from "@/db/schema";
-import { buildCryptomusHeaders, getCryptomusErrorMessage } from "@/lib/cryptomus";
+import { buildCryptomusHeaders, getCryptomusErrorMessage, resolveAppUrl } from "@/lib/cryptomus";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -37,13 +37,20 @@ export async function POST(req: Request) {
         const orderId = crypto.randomUUID();
         const installTag = installId ? ` | Install ID: ${installId}` : "";
 
-        const appUrl = process.env.NEXTAUTH_URL || process.env.AUTH_URL;
+        const appUrl = process.env.NEXTAUTH_URL || process.env.AUTH_URL || resolveAppUrl(req);
         const merchantId = process.env.CRYPTOMUS_MERCHANT_ID;
         const apiKey = process.env.CRYPTOMUS_PAYMENT_API_KEY;
         const apiBase = process.env.CRYPTOMUS_API_BASE || "https://api.cryptomus.com";
 
-        if (!appUrl || !merchantId || !apiKey) {
-            return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
+        const missingConfig = [
+            !appUrl ? "APP_URL" : null,
+            !merchantId ? "CRYPTOMUS_MERCHANT_ID" : null,
+            !apiKey ? "CRYPTOMUS_PAYMENT_API_KEY" : null,
+        ].filter(Boolean);
+
+        if (missingConfig.length > 0) {
+            console.error("Missing Cryptomus checkout configuration:", missingConfig);
+            return NextResponse.json({ error: `Missing configuration: ${missingConfig.join(", ")}` }, { status: 500 });
         }
 
         const invoicePayload = {

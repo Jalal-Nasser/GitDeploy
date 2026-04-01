@@ -21,6 +21,21 @@ export function buildCryptomusHeaders(body: string, merchantId: string, apiKey: 
     };
 }
 
+export function resolveAppUrl(req: Request) {
+    const forwardedHost = req.headers.get("x-forwarded-host");
+    const forwardedProto = req.headers.get("x-forwarded-proto");
+
+    if (forwardedHost) {
+        return `${forwardedProto || "https"}://${forwardedHost}`;
+    }
+
+    try {
+        return new URL(req.url).origin;
+    } catch {
+        return null;
+    }
+}
+
 export function getCryptomusErrorMessage(payload: unknown) {
     if (!payload || typeof payload !== "object") {
         return "Unexpected Cryptomus response";
