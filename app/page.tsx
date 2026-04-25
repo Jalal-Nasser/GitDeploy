@@ -191,7 +191,7 @@ function Hero() {
                     <div className="relative pt-[56.25%] bg-slate-900/50">
                         <iframe
                             className="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/IGNg9DonVlo?autoplay=1&loop=1&playlist=IGNg9DonVlo&controls=0&rel=0"
+                            src="https://www.youtube.com/embed/IGNg9DonVlo?autoplay=1&controls=0&rel=0"
                             title="YouTube video player"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowFullScreen

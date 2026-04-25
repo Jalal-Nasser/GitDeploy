@@ -37,8 +37,14 @@ export function Navbar() {
 
     const navLinks = [
         { name: "Home", href: "https://mdeploy.dev" },
-        { name: "PassGen", href: "/passgen" },
-        { name: "Let's Pray", href: "/lets-pray" },
+        { 
+            name: "App Store", 
+            isDropdown: true,
+            children: [
+                { name: "PassGen", href: "/passgen" },
+                { name: "Let's Pray", href: "/lets-pray" },
+            ]
+        },
         { name: "Demo", href: "https://passgen.mdeploy.dev/" },
         { name: "Pricing", href: "/passgen#pricing" },
         { name: "Projects", href: "/#projects" },
@@ -69,9 +75,35 @@ export function Navbar() {
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center gap-8">
                     {navLinks.map((link) => (
-                        <Link key={link.name} href={link.href} className="text-sm font-medium text-slate-300 hover:text-[#f959ca] hover:drop-shadow-[0_0_8px_rgba(249,89,202,0.8)] transition-all duration-300">
-                            {link.name}
-                        </Link>
+                        link.isDropdown ? (
+                            <div key={link.name} className="relative group" onMouseEnter={() => setAppsDropdownOpen(true)} onMouseLeave={() => setAppsDropdownOpen(false)}>
+                                <button className="flex items-center gap-1 text-sm font-medium text-slate-300 hover:text-[#f959ca] hover:drop-shadow-[0_0_8px_rgba(249,89,202,0.8)] transition-all duration-300">
+                                    {link.name} <ChevronDown className="w-4 h-4" />
+                                </button>
+                                <AnimatePresence>
+                                    {appsDropdownOpen && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 10 }}
+                                            className="absolute top-full left-0 mt-2 w-48 bg-slate-900 border border-slate-800 rounded-lg shadow-xl overflow-hidden"
+                                        >
+                                            <div className="flex flex-col">
+                                                {link.children?.map(child => (
+                                                    <Link key={child.name} href={child.href} className="px-4 py-3 text-sm text-slate-300 hover:bg-slate-800 hover:text-[#f959ca] transition-colors" onClick={() => setAppsDropdownOpen(false)}>
+                                                        {child.name}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        ) : (
+                            <Link key={link.name} href={link.href!} className="text-sm font-medium text-slate-300 hover:text-[#f959ca] hover:drop-shadow-[0_0_8px_rgba(249,89,202,0.8)] transition-all duration-300">
+                                {link.name}
+                            </Link>
+                        )
                     ))}
                     <Button
                         size="sm"
@@ -102,14 +134,25 @@ export function Navbar() {
                     >
                         <div className="p-4 flex flex-col gap-4">
                             {navLinks.map((link) => (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    className="text-base font-medium text-slate-300 hover:text-[#f959ca] hover:drop-shadow-[0_0_8px_rgba(249,89,202,0.8)] transition-all duration-300"
-                                    onClick={() => setIsOpen(false)}
-                                >
-                                    {link.name}
-                                </Link>
+                                link.isDropdown ? (
+                                    <div key={link.name} className="flex flex-col gap-2">
+                                        <span className="text-base font-bold text-white uppercase tracking-wider text-xs pt-2 pb-1">{link.name}</span>
+                                        {link.children?.map(child => (
+                                            <Link key={child.name} href={child.href} className="text-base font-medium pl-4 text-slate-400 hover:text-[#f959ca] transition-colors" onClick={() => setIsOpen(false)}>
+                                                {child.name}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <Link
+                                        key={link.name}
+                                        href={link.href!}
+                                        className="text-base font-medium text-slate-300 hover:text-[#f959ca] hover:drop-shadow-[0_0_8px_rgba(249,89,202,0.8)] transition-all duration-300"
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        {link.name}
+                                    </Link>
+                                )
                             ))}
                             <Button
                                 className="w-full"
