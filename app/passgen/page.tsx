@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { MsStoreBadge } from "../components/ui/MsStoreBadge";
-import { AppStoreBadge } from "../components/ui/AppStoreBadge";
 
 import { motion } from "framer-motion";
 import {
@@ -116,6 +115,16 @@ function Hero({ downloadCount }: { downloadCount: number | null }) {
                     transition={{ duration: 0.5, delay: 0.3 }}
                 >
                     <MsStoreBadge />
+                {/* iOS TestFlight badge */}
+                <a href="https://testflight.apple.com/join/Nt1cG1SZ" target="_blank" rel="noopener noreferrer" className="inline-block ml-4">
+                    <Image
+                        src="/icons/ios-testflight.png"
+                        alt="iOS TestFlight"
+                        width={150}
+                        height={50}
+                        className="h-12"
+                    />
+                </a>
                     <p className="mt-4 text-sm text-slate-500">
                         Version 1.0.7 • Windows 10/11
                         {downloadCount !== null && (
