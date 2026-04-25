@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { MsStoreBadge } from "../components/ui/MsStoreBadge";
+import { AppStoreBadge } from "../components/ui/AppStoreBadge";
 
 import { motion } from "framer-motion";
 import {
