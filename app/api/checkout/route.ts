@@ -1,7 +1,8 @@
 import { auth } from "@/auth";
 import { db } from "@/db";
-import { payments } from "@/db/schema";
+import { payments, users } from "@/db/schema";
 import { buildCryptomusHeaders, getCryptomusErrorMessage, resolveAppUrl } from "@/lib/cryptomus";
+import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -20,10 +21,6 @@ const PRICES = {
 export async function POST(req: Request) {
     try {
         const session = await auth();
-        if (!session?.user?.id) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
-
         const body = await req.json();
         const result = checkoutSchema.safeParse(body);
 
@@ -32,6 +29,27 @@ export async function POST(req: Request) {
         }
 
         const { plan, interval, installId } = result.data;
+
+        let userId = session?.user?.id;
+
+        if (!userId) {
+            if (!installId) {
+                return NextResponse.json({ error: "Please use the app to checkout or provide an Install ID." }, { status: 401 });
+            }
+
+            const existingUser = await db.query.users.findFirst({
+                where: eq(users.id, installId)
+            });
+
+            if (!existingUser) {
+                await db.insert(users).values({
+                    id: installId,
+                    email: `guest_${installId}@mdeploy.local`,
+                    name: "PassGen Guest"
+                });
+            }
+            userId = installId;
+        }
         const originalAmount = PRICES[plan][interval];
         const amount = Number((originalAmount * 0.95).toFixed(2));
         const orderId = crypto.randomUUID();
@@ -87,7 +105,7 @@ export async function POST(req: Request) {
 
         await db.insert(payments).values({
             id: orderId,
-            userId: session.user.id,
+            userId: userId,
             plan: plan,
             subscriptionPeriod: interval,
             amountUsd: amount.toString(),

@@ -51,10 +51,8 @@ export default function PricingPage() {
             });
 
             if (response.status === 401) {
-                const callbackUrl = installId
-                    ? `/passgen/pricing?installId=${encodeURIComponent(installId)}`
-                    : "/passgen/pricing";
-                router.push(`/api/auth/signin?callbackUrl=${encodeURIComponent(callbackUrl)}`);
+                const data = await response.json().catch(() => null);
+                alert(data?.error || "Please use the app to checkout or provide an Install ID.");
                 return;
             }
 
