@@ -38,7 +38,14 @@ export default function PricingPage() {
         }
     }, [installIdParam, router]);
 
-    const getInstallId = () => installIdParam || readStoredInstallId();
+    const getInstallId = () => {
+        let id = installIdParam || readStoredInstallId();
+        if (!id && typeof window !== "undefined") {
+            id = crypto.randomUUID();
+            localStorage.setItem("passgen-install-id", id);
+        }
+        return id;
+    };
 
     const handleCheckout = async (plan: string) => {
         try {
