@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "./ui/Button";
@@ -28,6 +29,7 @@ export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [appsDropdownOpen, setAppsDropdownOpen] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -45,8 +47,7 @@ export function Navbar() {
                 { name: "Let's Pray", href: "/lets-pray" },
             ]
         },
-        { name: "Demo", href: "https://passgen.mdeploy.dev/" },
-        { name: "Pricing", href: "/passgen#pricing" },
+        ...(pathname === "/passgen" ? [{ name: "Pricing", href: "/passgen#pricing" }] : []),
         { name: "Projects", href: "/#projects" },
         { name: "How I Build", href: "/#process" },
         { name: "Support", href: "https://github.com/mDeploys/PassGen/issues" },
