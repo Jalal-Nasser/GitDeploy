@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mdeploy.dev"),
-  title: "mDeploy - PassGen",
+  title: "mDeploy - Ship Apps",
   description:
     "mDeploy builds and ships production software. Explore my portfolio, repositories, and development process.",
   keywords: ["Software Engineer", "React", "Next.js", "TypeScript", "PassGen", "mDeploy", "Web Development"],
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "mDeploy - PassGen",
+    title: "mDeploy - Ship Apps",
     description: "Production software shipped daily. View my GitHub portfolio.",
     type: "website",
     locale: "en_US",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "mDeploy - PassGen",
+    title: "mDeploy - Ship Apps",
     description: "Production software shipped daily. View my GitHub portfolio.",
     creator: "@jalalnasser",
   },
