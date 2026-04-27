@@ -189,12 +189,12 @@ function Hero() {
                     transition={{ duration: 0.7, delay: 0.4 }}
                 >
                     <div className="relative pt-[56.25%] bg-slate-900/50">
-                        <iframe
-                            className="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/IGNg9DonVlo?autoplay=1&mute=1&controls=0&rel=0"
-                            title="YouTube video player"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen
+                        <Image
+                            src="/Ship Vitejs Application.gif"
+                            alt="Ship Vitejs Application"
+                            fill
+                            className="object-cover"
+                            unoptimized
                         />
                     </div>
                 </motion.div>
