@@ -53,6 +53,10 @@ export function Footer() {
                                     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-4 w-4"><path d="M12 24C5.37 24 0 18.63 0 12S5.37 0 12 0s12 5.37 12 12-5.37 12-12 12zm1.6-11.8c1.32 0 2.4-1.08 2.4-2.4 0-1.32-1.08-2.4-2.4-2.4H10v9h2.4v-4.2h1.2z"></path></svg>
                                     <span>Product Hunt</span>
                                 </a>
+                                <a href="https://t.me/@jalalnasserr" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-2 text-sm text-muted-foreground transition hover:border-[#229ED9]/60 hover:text-[#229ED9] hover:bg-[#229ED9]/5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-send h-4 w-4" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                                    <span>Telegram</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -67,9 +71,13 @@ export function Footer() {
                     </div>
                     <div>
                         <h4 className="mb-4 text-sm font-semibold">Company</h4>
-                        <ul className="space-y-2 text-sm">
-                            <li><a className="text-muted-foreground hover:text-foreground" href="https://mdeploy.dev/calculator">Pricing</a></li>
-                            <li><a className="text-muted-foreground hover:text-foreground" href="https://mdeploy.dev/contact">Contact us</a></li>
+                        <ul className="space-y-3 text-sm">
+                            <li>
+                                <a className="group inline-flex items-center gap-2 font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 hover:from-purple-300 hover:to-pink-300 transition-all" href="https://t.me/@jalalnasserr" target="_blank" rel="noopener noreferrer">
+                                    Contact us
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-send text-pink-400 group-hover:translate-x-1 transition-transform"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                                </a>
+                            </li>
                             <li><a className="text-muted-foreground hover:text-foreground" href="https://github.com/mDeploys/PassGen/blob/main/USER_GUIDE.md" target="_blank" rel="noopener noreferrer">Documentations</a></li>
                         </ul>
                     </div>
