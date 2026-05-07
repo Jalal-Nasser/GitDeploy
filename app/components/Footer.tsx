@@ -86,6 +86,7 @@ export function Footer() {
                         <ul className="space-y-2 text-sm">
                             <li><Link className="text-muted-foreground hover:text-foreground" href="/privacy">Privacy Policy</Link></li>
                             <li><Link className="text-muted-foreground hover:text-foreground" href="/terms">Terms of Service</Link></li>
+                            <li><Link className="text-muted-foreground hover:text-foreground" href="/passgen/ios-privacy">PassGen IOS Privacy</Link></li>
                         </ul>
                         <div className="mt-6">
                             <a href="https://www.producthunt.com/products/passgen-4/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-passgen-4" target="_blank" rel="noopener noreferrer">
