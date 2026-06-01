@@ -6,8 +6,8 @@ export function Footer() {
     return (
         <footer className="border-t border-border bg-background">
             <div className="container mx-auto px-4 py-12 lg:px-8">
-                <div className="grid gap-8 md:grid-cols-4">
-                    <div>
+                <div className="grid items-start gap-8 md:grid-cols-4">
+                    <div className="md:row-span-2">
                         <Link href="/" className="flex items-center gap-3 mb-6">
                             <div className="relative w-12 h-12">
                                 <Image
@@ -60,7 +60,7 @@ export function Footer() {
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div className="md:col-start-2 md:row-start-1">
                         <h4 className="mb-4 text-sm font-semibold">Services</h4>
                         <ul className="space-y-2 text-sm">
                             <li><a className="text-muted-foreground hover:text-foreground" href="https://mdeploy.dev/#services">Website Deployment</a></li>
@@ -69,7 +69,7 @@ export function Footer() {
                             <li><a className="text-muted-foreground hover:text-foreground" href="https://mdeploy.dev/#services">Desktop Development</a></li>
                         </ul>
                     </div>
-                    <div>
+                    <div className="md:col-start-3 md:row-start-1">
                         <h4 className="mb-4 text-sm font-semibold">Company</h4>
                         <ul className="space-y-3 text-sm">
                             <li>
@@ -81,22 +81,39 @@ export function Footer() {
                             <li><a className="text-muted-foreground hover:text-foreground" href="https://github.com/mDeploys/PassGen/blob/main/USER_GUIDE.md" target="_blank" rel="noopener noreferrer">Documentations</a></li>
                         </ul>
                     </div>
-                    <div>
+                    <div className="md:col-start-4 md:row-start-1">
                         <h4 className="mb-4 text-sm font-semibold">Legal</h4>
                         <ul className="space-y-2 text-sm">
                             <li><Link className="text-muted-foreground hover:text-foreground" href="/privacy">Privacy Policy</Link></li>
                             <li><Link className="text-muted-foreground hover:text-foreground" href="/terms">Terms of Service</Link></li>
                             <li><Link className="text-muted-foreground hover:text-foreground" href="/passgen/ios-privacy">PassGen IOS Privacy</Link></li>
                         </ul>
-                        <div className="mt-6">
+                    </div>
+                    <div className="md:col-start-2 md:col-span-2 md:row-start-2">
+                        <div className="w-full max-w-[640px] rounded-[1.25rem] border border-purple-500/18 bg-[linear-gradient(135deg,rgba(18,13,30,0.96),rgba(31,20,50,0.94))] p-3 shadow-[0_0_0_1px_rgba(168,85,247,0.08),0_18px_55px_-34px_rgba(168,85,247,0.6)]">
+                            <div id="pph-hireme" className="mx-auto h-[122px] max-w-[560px] overflow-hidden rounded-[0.9rem]">
+                                <iframe
+                                    src="https://www.peopleperhour.com/hire/widget/1648438511/2784711?width=600&height=200&orientation=horizontal&theme=dark&hourlies=1113922%2C538009"
+                                    width="600"
+                                    height="200"
+                                    frameBorder="0"
+                                    scrolling="no"
+                                    className="block h-[200px] w-full overflow-hidden border-0"
+                                    title="PeoplePerHour profile widget"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="space-y-4 md:col-start-4 md:row-start-2">
+                        <div>
                             <a href="https://www.producthunt.com/products/passgen-4/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-passgen-4" target="_blank" rel="noopener noreferrer">
                                 <img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1136094&theme=light" alt="PassGen - Secure Password Vault & Developer Secret Generator | Product Hunt" style={{ width: '250px', height: '54px' }} width="250" height="54" />
                             </a>
                         </div>
-                        <div className="mt-4">
+                        <div>
                             <MsStoreBadge style={{ width: '250px' }} />
                         </div>
-                        <div className="mt-4">
+                        <div>
                             <a href="https://www.producthunt.com/products/passgen-4?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-passgen-secrets-vault" target="_blank" rel="noopener noreferrer">
                                 <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1062539&theme=neutral&t=1768564164239" alt="PassGen Secrets Vault - Password Vault & Developer Secret Manager for Windows | Product Hunt" style={{ width: '250px', height: '54px' }} width="250" height="54" />
                             </a>

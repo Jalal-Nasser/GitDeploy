@@ -13,7 +13,6 @@ import {
     Cloud,
     Search,
     Lock,
-    Eye,
     Zap,
     Server,
     Database,
@@ -63,7 +62,9 @@ function Hero({ downloadCount }: { downloadCount: number | null }) {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-purple-900/20 blur-[130px] -z-10 rounded-full pointer-events-none" />
             <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-900/10 blur-[120px] -z-10 rounded-full pointer-events-none" />
 
-            <div className="container mx-auto px-4 md:px-6 flex flex-col items-center text-center">
+            <div className="container mx-auto px-4 md:px-6">
+                <div className="grid items-center gap-14 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8">
+                    <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -88,7 +89,11 @@ function Hero({ downloadCount }: { downloadCount: number | null }) {
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
                         Developer Secret Manager
                     </span>
-                    <br /> for Windows
+                    <br /> for Windows{" "}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-purple-400 to-blue-400">
+                        &amp;
+                    </span>{" "}
+                    iOS
                 </motion.h1>
 
                 <motion.p
@@ -138,8 +143,41 @@ function Hero({ downloadCount }: { downloadCount: number | null }) {
                         )}
                     </p>
                 </motion.div>
+                    </div>
+
+                    <motion.div
+                        className="flex justify-center lg:justify-end"
+                        initial={{ opacity: 0, x: 30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.7, delay: 0.2 }}
+                    >
+                        <HeroMobilePreview />
+                    </motion.div>
+                </div>
             </div>
         </section>
+    );
+}
+
+function HeroMobilePreview() {
+    return (
+        <div className="relative isolate">
+            <div className="absolute left-1/2 top-1/2 -z-10 h-[36rem] w-[22rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(147,51,234,0.42)_0%,rgba(91,33,182,0.26)_36%,rgba(14,10,31,0)_72%)] blur-[110px]" />
+            <div className="absolute left-1/2 top-28 -z-10 h-56 w-56 -translate-x-1/2 rounded-full bg-fuchsia-500/30 blur-[95px]" />
+            <div className="absolute right-0 top-32 -z-10 h-44 w-32 rounded-full bg-blue-500/24 blur-[90px]" />
+            <div className="absolute left-2 top-40 -z-10 h-40 w-28 rounded-full bg-violet-500/24 blur-[80px]" />
+            <div className="absolute bottom-8 left-1/2 -z-10 h-28 w-44 -translate-x-1/2 rounded-full bg-purple-500/18 blur-[70px]" />
+            <Image
+                src="/passgen/hero-phone.png"
+                alt="PassGen mobile app preview"
+                width={312}
+                height={604}
+                priority
+                sizes="(min-width: 1280px) 312px, (min-width: 1024px) 300px, (min-width: 640px) 280px, 260px"
+                className="h-auto w-[260px] sm:w-[280px] lg:w-[300px] xl:w-[312px]"
+                style={{ height: "auto" }}
+            />
+        </div>
     );
 }
 
