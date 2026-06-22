@@ -11,10 +11,46 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mdeploy.dev"),
-  title: "mDeploy - Ship Apps",
+  title: {
+    default: "Jalal Nasser | Freelance Full Stack Developer – Web & Desktop Apps",
+    template: "%s | mDeploy",
+  },
   description:
-    "mDeploy builds and ships production software. Explore my portfolio, repositories, and development process.",
-  keywords: ["Software Engineer", "React", "Next.js", "TypeScript", "PassGen", "mDeploy", "Web Development"],
+    "Jalal Nasser is a freelance full stack developer who builds and ships production-grade web applications and cross-platform desktop apps. Available for hire — React, Next.js, TypeScript, Electron.",
+  keywords: [
+    // Freelance identity
+    "freelance full stack developer",
+    "freelance web developer for hire",
+    "hire full stack developer",
+    "freelance software engineer",
+    "available for freelance projects",
+    // Web app focus
+    "web application developer",
+    "full stack web app development",
+    "Next.js developer freelance",
+    "React developer for hire",
+    "TypeScript developer freelance",
+    // Desktop app focus
+    "desktop app developer",
+    "Electron desktop application developer",
+    "cross-platform desktop app developer",
+    "Windows app developer freelance",
+    // Shipping / delivery angle
+    "ship web apps",
+    "production software developer",
+    "full stack developer shipping apps",
+    // Brand & tools
+    "mDeploy",
+    "Jalal Nasser",
+    "PassGen",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Electron",
+    "Node.js",
+    "web development",
+    "software engineer portfolio",
+  ],
   authors: [{ name: "Jalal Nasser", url: "https://github.com/Jalal-Nasser" }],
   creator: "Jalal Nasser",
   publisher: "mDeploy",
@@ -22,8 +58,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "mDeploy - Ship Apps",
-    description: "Production software shipped daily. View my GitHub portfolio.",
+    title: "Jalal Nasser | Freelance Full Stack Developer – Web & Desktop Apps",
+    description:
+      "Freelance full stack developer building and shipping production web apps and cross-platform desktop apps. View my portfolio on GitHub.",
     type: "website",
     locale: "en_US",
     siteName: "mDeploy",
@@ -31,8 +68,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "mDeploy - Ship Apps",
-    description: "Production software shipped daily. View my GitHub portfolio.",
+    title: "Jalal Nasser | Freelance Full Stack Developer – Web & Desktop Apps",
+    description:
+      "Freelance full stack developer building and shipping production web apps and cross-platform desktop apps.",
     creator: "@jalalnasser",
   },
 };
@@ -79,6 +117,49 @@ export default function RootLayout({
           `}
         </Script>
 
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                name: "Jalal Nasser",
+                url: "https://mdeploy.dev",
+                sameAs: [
+                  "https://github.com/Jalal-Nasser",
+                  "https://twitter.com/jalalnasser",
+                ],
+                jobTitle: "Freelance Full Stack Developer",
+                description:
+                  "Freelance full stack developer specializing in building and shipping web applications and cross-platform desktop apps using React, Next.js, TypeScript, and Electron.",
+                knowsAbout: [
+                  "Full Stack Development",
+                  "Web Application Development",
+                  "Desktop App Development",
+                  "React",
+                  "Next.js",
+                  "TypeScript",
+                  "Electron",
+                  "Node.js",
+                  "Freelance Software Development",
+                ],
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                name: "mDeploy",
+                url: "https://mdeploy.dev",
+                description:
+                  "Portfolio and product hub of Jalal Nasser — freelance full stack developer shipping web and desktop applications.",
+                author: {
+                  "@type": "Person",
+                  name: "Jalal Nasser",
+                },
+              },
+            ]),
+          }}
+        />
         <Navbar />
         <Providers>
           {children}

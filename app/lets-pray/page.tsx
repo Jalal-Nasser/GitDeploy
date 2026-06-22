@@ -45,6 +45,18 @@ const interfaceShots = [
 export const metadata: Metadata = {
     title: `Let's Pray ${ARABIC_TAGLINE} | mDeploy`,
     description: "Prayer times and precise Azan notifications right on your desktop. Stay on time with your daily worship seamlessly.",
+    keywords: [
+        "Let's Pray",
+        "prayer times desktop app",
+        "Azan notification Windows",
+        "Muslim prayer app Windows",
+        "Islamic prayer times software",
+        "prayer reminder desktop",
+        "Salah times app",
+        "Azan alarm Windows",
+        "mDeploy desktop app",
+        "Jalal Nasser",
+    ],
     alternates: {
         canonical: "/lets-pray",
     },
