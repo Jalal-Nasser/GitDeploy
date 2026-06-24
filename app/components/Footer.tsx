@@ -57,7 +57,7 @@ export function Footer() {
                             <div className="mt-4">
                                 <a href="https://partnernetwork.ionos.com/partner/mdeploy?origin=PartnerBadge" rel="nofollow">
                                     <img
-                                        src="https://images-1.partnerportal.ionos.com/items/cfaa5c0f-4de2-4bdf-b267-63dd59f57290/profiles/4b357f93-1dba-4af2-a0a8-00f1e91c1ff2/badges/normal_white"
+                                        src="/ionos-partner-badge.svg"
                                         alt="IONOS - Official Partner"
                                         style={{ width: '170px', height: 'auto' }}
                                     />
