@@ -2,6 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { MsStoreBadge } from "./ui/MsStoreBadge";
 
+const CONTACT_URL = "https://t.me/jalalnasserr";
+const GITHUB_URL = "https://github.com/mDeploys";
+
 export function Footer() {
     return (
         <footer className="border-t border-border bg-background">
@@ -93,6 +96,44 @@ export function Footer() {
                             <li><Link className="text-muted-foreground hover:text-foreground" href="/terms">Terms of Service</Link></li>
                             <li><Link className="text-muted-foreground hover:text-foreground" href="/passgen/ios-privacy">PassGen IOS Privacy</Link></li>
                         </ul>
+                    </div>
+                    <div className="md:col-start-2 md:col-span-2 md:row-start-2">
+                        <div className="relative overflow-hidden rounded-[1.5rem] border border-purple-500/18 bg-[radial-gradient(circle_at_top_left,rgba(168,85,247,0.18),transparent_40%),linear-gradient(135deg,rgba(15,10,28,0.98),rgba(20,14,35,0.94))] p-6 shadow-[0_0_0_1px_rgba(168,85,247,0.08),0_24px_70px_-36px_rgba(168,85,247,0.55)]">
+                            <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:28px_28px]" />
+                            <div className="relative flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+                                <div className="max-w-xl">
+                                    <p className="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-purple-300/80">Available for new work</p>
+                                    <h3 className="text-2xl font-semibold tracking-tight text-white">Need a deployment partner or a full-stack builder?</h3>
+                                    <p className="mt-3 max-w-lg text-sm leading-6 text-slate-300">
+                                        I build and ship web apps, desktop apps, and production deployments with a focus on speed, polish, and reliability.
+                                    </p>
+                                </div>
+                                <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+                                    <a
+                                        href={CONTACT_URL}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-5 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(168,85,247,0.25)] transition hover:scale-[1.02] hover:from-purple-400 hover:to-pink-400"
+                                    >
+                                        Contact on Telegram
+                                    </a>
+                                    <a
+                                        href={GITHUB_URL}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-purple-400/40 hover:bg-white/10 hover:text-white"
+                                    >
+                                        View GitHub
+                                    </a>
+                                </div>
+                            </div>
+                            <div className="relative mt-5 flex flex-wrap gap-2">
+                                <span className="rounded-full border border-purple-500/20 bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-200">Web apps</span>
+                                <span className="rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-200">Desktop apps</span>
+                                <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-200">Freelance available</span>
+                                <span className="rounded-full border border-slate-700 bg-slate-900/60 px-3 py-1 text-xs font-medium text-slate-300">Fast turnaround</span>
+                            </div>
+                        </div>
                     </div>
                     <div className="space-y-4 md:col-start-4 md:row-start-2">
                         <div>
