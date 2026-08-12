@@ -89,21 +89,6 @@ export function Footer() {
                             <li><Link className="text-muted-foreground hover:text-foreground" href="/passgen/ios-privacy">PassGen IOS Privacy</Link></li>
                         </ul>
                     </div>
-                    <div className="md:col-start-2 md:col-span-2 md:row-start-2">
-                        <div className="w-full max-w-[640px] rounded-[1.25rem] border border-purple-500/18 bg-[linear-gradient(135deg,rgba(18,13,30,0.96),rgba(31,20,50,0.94))] p-3 shadow-[0_0_0_1px_rgba(168,85,247,0.08),0_18px_55px_-34px_rgba(168,85,247,0.6)]">
-                            <div id="pph-hireme" className="mx-auto h-[122px] max-w-[560px] overflow-hidden rounded-[0.9rem]">
-                                <iframe
-                                    src="https://www.peopleperhour.com/hire/widget/1648438511/2784711?width=600&height=200&orientation=horizontal&theme=dark&hourlies=1113922%2C538009"
-                                    width="600"
-                                    height="200"
-                                    frameBorder="0"
-                                    scrolling="no"
-                                    className="block h-[200px] w-full overflow-hidden border-0"
-                                    title="PeoplePerHour profile widget"
-                                />
-                            </div>
-                        </div>
-                    </div>
                     <div className="space-y-4 md:col-start-4 md:row-start-2">
                         <div>
                             <a href="https://www.producthunt.com/products/passgen-4/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-passgen-4" target="_blank" rel="noopener noreferrer">
